@@ -1,0 +1,93 @@
+<app-right-outlet>
+  <span page-title>Создание запроса в СЦ</span>
+
+  <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+    <button mat-raised-button (click)="back()">Назад</button>
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!checkSuccess">Создать</button>
+  </mat-toolbar>
+
+  <p
+    [style.padding.px]="20"
+    *ngIf="createResult$ | async as result"
+    [ngClass]="{ warn: result.errCode !== '00', success: result.errCode === '00' }"
+  >
+    {{ result.errCode !== '00' ? 'Ошибка при создании запроса: ' : '' }} {{ result.errMessage }}
+  </p>
+
+  <ng-container *ngIf="serviceCenters$ | async"></ng-container>
+  <ng-container *ngIf="shops$ | async"></ng-container>
+
+  <mat-card class="page-content" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Сервисный центр</mat-label>
+      <input matInput [readonly]="true" formControlName="serviceCenterName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Магазин</mat-label>
+      <input matInput [readonly]="true" formControlName="shopName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Заявка на установку</mat-label>
+      <input matInput [readonly]="true" formControlName="numberZNU" />
+    </mat-form-field>
+
+    <div fxLaout fxLayoutAlign="start center" fxLayoutGap="16px" [style.width.%]="70">
+      <mat-form-field fxFlex>
+        <mat-label>Номер инцидента в SAP CRM</mat-label>
+        <input matInput formControlName="incidentNumber" />
+      </mat-form-field>
+      <button mat-stroked-button matSuffix (click)="check()" color="accent">
+        <mat-icon>check</mat-icon>&nbsp;Проверить
+      </button>
+    </div>
+
+    <p *ngIf="numInCRM$ | async as result" class="primary">
+      <b>{{ result.errMessage }}</b>
+    </p>
+    <p>&nbsp;</p>
+
+    <ng-container *ngIf="checkSuccess">
+      <mat-form-field>
+        <mat-label>ФИО клиента</mat-label>
+        <input matInput formControlName="clientName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Телефон клиента</mat-label>
+        <input matInput formControlName="clientPhone" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Суть проблемы/обращения</mat-label>
+        <textarea matInput formControlName="problemEssence"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Почта ответственного сотрудника</mat-label>
+        <input matInput formControlName="responsibleEmployeeMail" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Причина создания инцидента</mat-label>
+        <mat-select formControlName="incidentCreationReasonId">
+          <mat-option [value]="null">...</mat-option>
+          <mat-option *ngFor="let item of createReasonProp$ | async" [value]="item.id">{{ item.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ожидаемое решение</mat-label>
+        <textarea matInput formControlName="expectedSolution"></textarea>
+      </mat-form-field>
+
+      <irm-incident-file-upload [disabled]="disabled" [reserveControl]="reserveControl" [style.width.%]="60">
+      </irm-incident-file-upload>
+    </ng-container>
+
+    <p>
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="!checkSuccess">Создать</button>
+    </p>
+  </mat-card>
+</app-right-outlet>

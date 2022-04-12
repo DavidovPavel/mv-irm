@@ -1,0 +1,48 @@
+@import '~@irm-ui/common/styles/common';
+
+:host {
+  display: block;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.mat-divider {
+  position: static !important;
+}
+
+.history {
+  padding: 16px 0;
+  line-height: 20px;
+  & > div {
+    padding-bottom: 10px;
+    & > div:first-child {
+      flex: 1;
+    }
+  }
+}
+
+.mat-icon {
+  color: $text-lighter;
+  margin: 0 4px;
+}
+
+.disc {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  margin: 0 4px;
+}
+
+.IncidentRequestCreateEvent {
+  background-color: #b2b2b2;
+}
+.IncidentRequestAddFirstCommentEvent {
+  background-color: #007acc;
+}
+.IncidentRequestAddDepartureDateEvent {
+  background-color: #ff9d00;
+}
+.IncidentRequestCloseEvent {
+  background-color: #339933;
+}

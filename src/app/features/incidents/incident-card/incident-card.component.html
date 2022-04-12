@@ -1,0 +1,39 @@
+<app-right-outlet *ngIf="id$ | async as id">
+  <span page-title>Карточка запроса в СЦ</span>
+
+  <ng-container *ngIf="permissions$ | async as permissions" [appFormGroup]="permissions">
+    <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+      <button mat-stroked-button (click)="back()">Назад</button>
+      <app-incident-controls [id]="id"></app-incident-controls>
+    </mat-toolbar>
+
+    <div
+      *ngIf="incident$ | async as incident"
+      [appIncidentSource]="incident"
+      fxLayout="row wrap"
+      fxLayoutAlign="start start"
+      fxLayoutGap="20px"
+      class="page-content"
+    >
+      <div fxFlex.lt-md="100" fxFlex.gt-sm="64">
+        <app-request-panel [incident]="incident"></app-request-panel>
+
+        <app-departure-date-panel [permissions]="permissions" [departureDate]="incident.departureDate">
+        </app-departure-date-panel>
+
+        <app-comments-files-panel
+          [id]="id"
+          [permissions]="permissions"
+          [comments]="incident.comments"
+          [commentFiles]="incident.commentFiles"
+        ></app-comments-files-panel>
+      </div>
+
+      <div fxFlex.lt-md="94" fxFlex.gt-sm="33" fxFlex.gt-lg="25">
+        <app-timing-panel [incident]="incident"></app-timing-panel>
+        <app-znu-panel [incident]="incident"></app-znu-panel>
+        <app-history-panel *ngxPermissionsOnly="perm.ViewIncidentHistory"></app-history-panel>
+      </div>
+    </div>
+  </ng-container>
+</app-right-outlet>

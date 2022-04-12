@@ -1,0 +1,16 @@
+
+
+button {
+  width: auto;
+  height: auto;
+  line-height: normal;
+  & mat-icon {
+    color: #fff;
+  }
+}
+
+::ng-deep .mat-mini-fab .mat-button-wrapper {
+  padding: 0 !important;
+}
+
+

@@ -1,0 +1,32 @@
+<mat-toolbar fxLayout [style.marginBottom.px]="15">
+  <mat-toolbar-row>
+    <mat-form-field fxFlex="100%">
+      <input matInput placeholder="Введите данные для поиска (например, номер договора)"
+        [formControl]="liveSearchControl">
+      <button mat-button matSuffix mat-icon-button aria-label="Искать" (click)="liveSearchControl.setValue('')"
+        matTooltip="Очистить поле">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-toolbar-row>
+  <mat-toolbar-row fxLayout fxLayoutAlign="flex-end center" fxFlex="100%">
+    <button mat-stroked-button color="primary">
+      <mat-icon>import_export</mat-icon><span>Выгрузить в Excel</span>
+    </button>
+    &nbsp;&nbsp;
+    <button mat-stroked-button color="primary">
+      <mat-icon>add</mat-icon><span>Добавить контрагента</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="page-content" *ngrxLet="dataSource$ as dataSource">
+  <irm-grid [dataSource]="dataSource.data" [gridConfig]="gridConfig" [totalSize]="dataSource.totalSize" (changePaginatedQuery)="pageEvent($event)">
+    <ng-template name="users" let-row>{{ row.users | arrayToColumn }}</ng-template>
+    <ng-template name="contractDate" let-row>{{ row.contractDate | date:'dd.MM.yyyy'}}</ng-template>
+    <ng-template name="changeDate" let-row>{{ row.changeDate | date:'dd.MM.yyyy' }}</ng-template>
+    <ng-template name="isDeleted" let-row>
+      <mat-icon color="warn" *ngIf="row.isDeleted" matTooltip="Договор удален">clear</mat-icon>
+    </ng-template>
+  </irm-grid>
+</div>

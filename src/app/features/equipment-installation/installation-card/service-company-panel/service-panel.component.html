@@ -1,0 +1,202 @@
+<irm-card-container (openState)="panelOpenState = $event">
+  <span>Сервисная компания</span>
+  <div [@bodyExpansion]="!panelOpenState ? 'collapsed' : 'expanded'" fxLayout="row wrap" fxLayoutGap="16px">
+    <irm-text-control
+      [form]="form"
+      label="Сервисный центр"
+      name="serviceCenterName"
+      [value]=""
+      [readonly]="true"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Телефон сервисного центра"
+      name="serviceCenterPhone"
+      [value]="appeal.serviceCenterPhone"
+      [readonly]="true"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Email сервисного центра"
+      name="serviceCenterEmail"
+      [value]=""
+      [readonly]="true"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="№ заказа CK"
+      name="orderNumber"
+      [value]="appeal.orderNumber"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-label-control
+      label="Статус обслуживания"
+      [value]="appeal.status"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-label-control>
+    <irm-text-control
+      [form]="form"
+      label="Наименование проданной услуги"
+      name="serviceName"
+      [value]="appeal.serviceName"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Наименование товара"
+      name="productName"
+      [value]="appeal.productName"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Фирма-производитель"
+      name="manufacturer"
+      [value]="appeal.manufacturer"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Модель"
+      name="model"
+      [value]="appeal.model"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Серийный номер"
+      name="serial"
+      [value]="appeal.serial"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-datepicker-control
+      [form]="form"
+      label="Дата обращения"
+      name="appealDate"
+      [value]="appeal.appealDate"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-datepicker-control>
+    <irm-datepicker-control
+      [form]="form"
+      label="Дата установки"
+      name="serviceDate"
+      [value]="appeal.serviceDate"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-datepicker-control>
+
+    <irm-checkbox-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      name="statusDone"
+      [form]="form"
+      label="Установка произведена"
+    ></irm-checkbox-control>
+    <irm-checkbox-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      name="statusRef"
+      [form]="form"
+      label="Отказ от установки"
+    ></irm-checkbox-control>
+    <irm-checkbox-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      name="statusDefectBefore"
+      [form]="form"
+      hint="Необходимо добавить скан акта или ссылку на видео"
+      label="Брак техники до установки"
+    ></irm-checkbox-control>
+    <irm-checkbox-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      name="statusDefectAfter"
+      [form]="form"
+      hint="Необходимо добавить скан акта или ссылку на видео"
+      label="Брак техники после установки"
+    ></irm-checkbox-control>
+    <irm-textarea-control [form]="form" name="commentSC" label="Комментарий СК" class="full-width"></irm-textarea-control>
+  </div>
+  <div
+    [@bodyExpansion]="panelOpenState ? 'collapsed' : 'expanded'"
+    fxLayout="row wrap"
+    fxLayoutGap="16px"
+    class="short-display"
+  >
+    <irm-label-control label="Сервисный центр:" [value]=""></irm-label-control>
+    <irm-label-control label="Телефон сервисного центра:" [value]="appeal.serviceCenterPhone"></irm-label-control>
+    <irm-label-control label="Email сервисного центра:" [value]=""></irm-label-control>
+    <irm-label-control label="№ заказа CK:" [value]="appeal.orderNumber"></irm-label-control>
+    <irm-label-control label="Статус обслуживания:" [value]=""></irm-label-control>
+    <irm-label-control label="Наименование проданной услуги:" [value]="appeal.serviceName"></irm-label-control>
+    <irm-label-control label="Наименование товара:" [value]="appeal.productName"></irm-label-control>
+    <irm-label-control label="Фирма-производитель:" [value]="appeal.manufacturer"></irm-label-control>
+    <irm-label-control label="Модель:" [value]="appeal.model"></irm-label-control>
+    <irm-label-control label="Серийный номер:" [value]="appeal.serial"></irm-label-control>
+    <irm-label-control label="Дата обращения:" [value]="appeal.appealDate | date: 'dd:MM:yyyy'"></irm-label-control>
+    <irm-label-control label="Дата установки:" [value]="appeal.serviceDate | date: 'dd:MM:yyyy'"></irm-label-control>
+    <irm-label-control label="Статус установки:" [value]="appeal.status"></irm-label-control>
+  </div>
+</irm-card-container>

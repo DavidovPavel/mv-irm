@@ -1,0 +1,24 @@
+@import '~@irm-ui/common/styles/common';
+@import '~@irm-ui/common/styles/label';
+
+$label_width: 250px;
+$padding: 16px;
+
+.mat-list-item {
+  height: auto;
+  font-size: 14px;
+  color: $text-light;
+  cursor: pointer;
+
+  &.warn {
+    background-color: $bg-hover;
+  }
+
+  label {
+    @include label($warn);
+  }
+
+  .mat-icon {
+    margin-left: $padding;
+  }
+}

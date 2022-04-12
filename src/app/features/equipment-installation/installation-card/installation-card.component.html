@@ -1,0 +1,15 @@
+<app-right-outlet *ngIf="instance$ | async as instance">
+  <span page-title>Заявка на установку {{ instance.couponNumber }}</span>
+  <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+    <button mat-stroked-button [routerLink]="['../']">Назад</button>
+    <button mat-raised-button color="primary" (click)="update(instance)">Сохранить</button>
+  </mat-toolbar>
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="20px" class="page-content">
+    <div fxFlex.lt-md="100" fxFlex.gt-sm="64">
+      <app-service-panel [appeal]="instance" [form]="form"></app-service-panel>
+      <app-parent-form *ngIf="instance.parentId"></app-parent-form>
+      <app-client-panel [appeal]="instance" [form]="form"></app-client-panel>
+    </div>
+    <app-sales-panel [appeal]="instance" fxFlex.lt-md="94" fxFlex.gt-sm="33" fxFlex.gt-lg="25"></app-sales-panel>
+  </div>
+</app-right-outlet>

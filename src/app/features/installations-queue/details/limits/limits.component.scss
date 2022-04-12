@@ -1,0 +1,18 @@
+@import '~@irm-ui/common/styles/common';
+@import '../../styles/item-day';
+
+:host {
+  border-color: $text-lighter !important;
+  font-weight: bold;
+
+  &.warn {
+    border: solid 1px $warn-alt;
+    color: $text-dark;
+    background-color: $warn-light;
+  }
+
+  & > span {
+    display: inline-block;
+    line-height: 16px;
+  }
+}

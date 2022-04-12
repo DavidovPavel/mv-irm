@@ -1,0 +1,22 @@
+<div fxLayout fxLayoutAlign="flex-start center">
+  <mat-icon>{{ icon(group.quotaGroupId) }}</mat-icon>
+  <span>{{ group.quotaGroupName }}</span>
+</div>
+
+<div class="right" fxLayout="row wrap">
+  <ng-container *ngIf="group.isExpanded; else collapsed">
+    <span class="average" matTooltip="Трудоёмкость">
+      <mat-icon>schedule</mat-icon>
+      <span>&nbsp;{{ group.averageValue }}</span>
+    </span>
+
+  </ng-container>
+  <ng-template #collapsed>
+    <span *ngFor="let region of group.regions" class="region" [ngClass]="{ red: region.hasQuotas === false }">
+      <span>{{ region.name }}</span
+      ><span>{{ region.hasQuotas === false ? 'квот нет' : (region | checkRegionQuota | date: 'dd:MM:yyyy') }}</span>
+    </span>
+  </ng-template>
+</div>
+
+<mat-icon>{{ group.isExpanded ? 'expand_more' : 'chevron_right' }}</mat-icon>

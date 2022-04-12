@@ -1,0 +1,17 @@
+<header fxLayout fxLayoutAlign="space-between center">
+  <h1 ngClass.lt-sm="small">
+    <ng-content select="[page-title]"></ng-content>
+  </h1>
+
+  <div fxLayout>
+    <app-notifications></app-notifications>
+    <div class="user" *ngIf="profile$ | async as profile">
+      <mat-icon fontSet="material-icons-outlined">account_circle</mat-icon>
+      {{ profile!.login }}
+    </div>
+  </div>
+</header>
+
+<div class="page-container">
+  <ng-content></ng-content>
+</div>

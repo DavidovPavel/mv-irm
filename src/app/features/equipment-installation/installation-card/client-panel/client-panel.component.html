@@ -1,0 +1,185 @@
+<irm-card-container (openState)="panelOpenState = $event">
+  <span>Клиент</span>
+  <div [@bodyExpansion]="panelOpenState ? 'expanded' : 'collapsed'" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="start center">
+    <irm-text-control
+      [form]="form"
+      label="Фамилия"
+      name="clientLastName"
+      [value]="appeal.clientLastName"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Имя"
+      name="clientFirstName"
+      [value]="appeal.clientFirstName"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Отчество"
+      name="clientMiddleName"
+      [value]="appeal.clientMiddleName"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Телефон мобильный"
+      name="mobilePhone"
+      [value]="appeal.mobilePhone"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Город"
+      name="cityName"
+      [value]="appeal.cityName"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Улица"
+      name="street"
+      [value]="appeal.street"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Ближайшее метро"
+      name="subway"
+      [value]="appeal.subway"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control [form]="form" label="Дом" name="house" [value]="appeal.house" class="w-80"></irm-text-control>
+    <irm-text-control [form]="form" label="Корпус" name="corps" [value]="appeal.corps" class="w-80"></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Строение"
+      name="building"
+      [value]="appeal.building"
+      class="w-80"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Подъезд"
+      name="entrance"
+      [value]="appeal.entrance"
+      class="w-80"
+    ></irm-text-control>
+    <irm-text-control [form]="form" label="Квартира" name="flat" [value]="appeal.flat" class="w-80"></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Код"
+      name="codeKey"
+      [value]="appeal.codeKey"
+      class="w-80"
+    ></irm-text-control>
+    <irm-text-control [form]="form" label="Этаж" name="floor" [value]="appeal.floor" class="w-80"></irm-text-control>
+    <irm-checkbox-control
+      [form]="form"
+      label="Лифт"
+      name="elevator"
+      [value]="appeal.elevator"
+      [style.width]="'auto'"
+    ></irm-checkbox-control>
+    <irm-text-control
+      [form]="form"
+      label="Мобильный телефон"
+      name="mobilePhone"
+      [value]="appeal.mobilePhone"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Телефон домашний"
+      name="homePhone"
+      [value]="appeal.homePhone"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="Телефон рабочий"
+      name="workPhone"
+      [value]="appeal.workPhone"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-text-control
+      [form]="form"
+      label="E-mail"
+      name="email"
+      [value]="appeal.email"
+      [validators]="emailValidators"
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+    ></irm-text-control>
+    <irm-textarea-control
+      [form]="form"
+      label="Комментарий магазина"
+      name="shopComment"
+      [value]="appeal.shopComment"
+      class="full-width"
+    ></irm-textarea-control>
+  </div>
+  <div
+    [@bodyExpansion]="panelOpenState ? 'collapsed' : 'expanded'"
+    fxLayout="row wrap"
+    fxLayoutGap="16px"
+    class="short-display"
+  >
+    <irm-label-control
+      label="ФИО:"
+      [value]="
+        (appeal.clientLastName || '') + ' ' + (appeal.clientFirstName || '') + ' ' + (appeal.clientMiddleName || '')
+      "
+    ></irm-label-control>
+    <irm-label-control label="Моб. тел.:" [value]="appeal.mobilePhone"></irm-label-control>
+    <irm-label-control label="Дом. тел.:" [value]="appeal.homePhone"></irm-label-control>
+    <irm-label-control label="Раб. тел.:" [value]="appeal.workPhone"></irm-label-control>
+    <irm-label-control label="E-mail:" [value]="appeal.email"></irm-label-control>
+    <irm-label-control label="Адрес:" [value]="appeal | address"></irm-label-control>
+    <irm-label-control label="Комментарий магазина:" [value]="appeal.shopComment"></irm-label-control>
+  </div>
+</irm-card-container>

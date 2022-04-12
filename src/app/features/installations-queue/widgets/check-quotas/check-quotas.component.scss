@@ -1,0 +1,32 @@
+@import '~@irm-ui/common/styles/common';
+@import '~@irm-ui/common/styles/label';
+
+.mat-card {
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 14px;
+  flex: 1;
+
+  & > div > span {
+    font-size: 16px;
+    line-height: 19px;
+    color: $text-dark;
+  }
+
+  &.warn {
+    background-color: $warn-light;
+    border: 1px solid $red-dark;
+
+    & > div {
+      & > span {
+        color: $red-alt;
+      }
+      & > div {
+        margin-top: 6px;
+        font-size: 24px;
+        line-height: 23px;
+        color: $red-dark;
+      }
+    }
+  }
+}

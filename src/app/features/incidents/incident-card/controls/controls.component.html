@@ -1,0 +1,10 @@
+<button mat-raised-button color="primary" (click)="save()" [disabled]="formGroup.form.invalid">Сохранить</button>
+
+<button mat-raised-button *ngxPermissionsOnly="permissions.Incident_cancel" color="accent"
+  (click)="sendTrigger(0)">Отменить запрос</button>
+
+<button mat-raised-button *ngxPermissionsOnly="permissions.Incident_sendToSC" color="primary"
+  (click)="sendTrigger(2)">Отправить запрос в СЦ</button>
+
+<button mat-raised-button *ngxPermissionsOnly="permissions.Incident_complete" color="accent"
+  (click)="sendTrigger(1)">Завершить исполнение</button>

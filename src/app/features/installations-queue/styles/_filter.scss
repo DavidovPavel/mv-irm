@@ -1,0 +1,27 @@
+@mixin filter {
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+
+  &.active {
+    background-color: $bg-hover;
+    border-radius: 0;
+  }
+
+  & span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+
+    &.red {
+      border: solid 1px $warn;
+      background: $warn-light;
+    }
+
+    &.gray {
+      border: 1px solid $text-lighter;
+      background: $bg-hover;
+    }
+  }
+}

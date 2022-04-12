@@ -1,0 +1,34 @@
+@import '../../styles/list';
+@import '../../styles/statistic';
+@import '../../styles/divider';
+@import '../../styles/filter';
+
+.scroll-viewport {
+  overflow-x: auto;
+}
+
+.mat-list {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep.mat-list-item-content {
+    padding: 0 !important;
+  }
+}
+
+.mat-line {
+  min-height: 40px;
+  & > span {
+    width: $label_width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.mat-button {
+  @include filter;
+}
+
+

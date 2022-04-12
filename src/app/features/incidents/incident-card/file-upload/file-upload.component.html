@@ -1,0 +1,28 @@
+<div *ngFor="let item of reserve" class="list">
+  <div>
+    <mat-icon>build</mat-icon>
+  </div>
+  <div>
+    <span>{{ item.lastModified | date:'dd.MM.yyyy HH:mm' }}</span>
+    <p>
+      <mat-icon>attachment</mat-icon>
+      &nbsp;&nbsp;
+      <span>{{ item.name }}</span>
+      <button mat-icon-button (click)="removeFile(item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </p>
+  </div>
+</div>
+
+<div class="controls">
+  <button mat-button color="primary" (click)="show()" [disabled]="disabled">
+    <mat-icon>attach_file</mat-icon>
+    <label>Вложить файл</label>
+  </button>
+  <input type="file" #fileUploadInput multiple="multiple" value="upload_file" (change)="fileUploadHandler($event)"
+    [style.display]="'none'" />
+  <mat-error class="upload-error">
+    <mat-error>{{ notifyError }}</mat-error>
+  </mat-error>
+</div>

@@ -1,0 +1,21 @@
+<div>
+  <app-param-selectors
+    *ngIf="serviceCenters$ | async as sc"
+    [serviceCenters]="sc"
+    [preset]="preset"
+    fxLayout
+    fxLayoutGap="20px"
+  >
+  </app-param-selectors>
+</div>
+<div fxLayout fxLayoutGap="20px">
+  <button mat-stroked-button color="primary" (click)="clearEmit()" [disabled]="disabled">
+    <mat-icon>refresh</mat-icon><span>Сбросить</span>
+  </button>
+  <button mat-stroked-button color="primary" (click)="copyEmit(7)" [disabled]="disabled">
+    <mat-icon>copy</mat-icon><span>Копировать на неделю</span>
+  </button>
+  <button mat-stroked-button color="primary" (click)="copyEmit(30)" [disabled]="disabled">
+    <mat-icon>copy</mat-icon><span>Копировать на месяц</span>
+  </button>
+</div>

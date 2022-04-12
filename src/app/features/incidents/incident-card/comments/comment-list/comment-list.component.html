@@ -1,0 +1,21 @@
+<div *ngFor="let item of dataSource" class="list">
+  <div>
+    <mat-icon>{{ item.roles | commentFileIcon }}</mat-icon>
+  </div>
+  <div>
+    <span>{{ item.createDate | date:'dd.MM.yyyy HH:mm' }}</span> - <span>{{ item.userFullName }}</span>
+    <br>
+    <span>{{ item.userLogin }}</span>
+    <p>{{ item.text }}</p>
+  </div>
+</div>
+
+<div fxLayout fxLayoutGap="10px" fxLayoutAlign="start center" class="wrap">
+  <mat-form-field [formGroup]="form">
+    <mat-label>Добавить комментарий</mat-label>
+    <textarea matInput placeholder="Ваш комментарий" formControlName="comment" rows="4"></textarea>
+  </mat-form-field>
+  <button [disabled]="disabled" mat-button mat-icon-button matSuffix color="primary" (click)="sendMessage()">
+    <mat-icon>send</mat-icon>
+  </button>
+</div>

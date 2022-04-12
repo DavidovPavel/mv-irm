@@ -1,0 +1,7 @@
+@import '~@irm-ui/common/styles/common';
+
+.mat-divider {
+  width: auto !important;
+  margin: 0 16px !important;
+  border-top-color: $divider;
+}

@@ -1,0 +1,45 @@
+<ng-container *ngFor="let item of content?.metaData">
+  <ng-container *ngIf="content?.eventType">
+    <h3>{{ item.Subject }}</h3>
+    <label>Кому:</label>&nbsp;<span>{{ item.Addresses }}</span>
+    <pre>{{ item.Body }}</pre>
+  </ng-container>
+
+  <ng-container *ngIf="item.CreatedFields as fields">
+    <h2>Данные запроса</h2>
+    <p>Номер инцидента/претензии: {{ getValue(fields, 'IncidentNumber') }}</p>
+    <p>Номер ЗНУ: {{ getValue(fields, 'NumberZNU') }}</p>
+    <p>ФИО клиента: {{ getValue(fields, 'ClientName') }}</p>
+    <p>Телефон клиента: {{ getValue(fields, 'ClientPhone') }}</p>
+    <p>Сервисный центр: {{ getValue(fields, 'ServiceCenterId') }}</p>
+    <p>Причина создания: {{ getValue(fields, 'IncidentCreationReasonId') }}</p>
+    <p>Почта отв. сотрудника: {{ getValue(fields, 'ResponsibleEmployeeMail') }}</p>
+    <p>Суть проблемы/обращения: {{ getValue(fields, 'ProblemEssence') }}</p>
+    <p>Ожидаемое решение: {{ getValue(fields, 'ExpectedSolution') }}</p>
+
+    <h2>Сроки</h2>
+    <p>Дата создания: {{ getValue(fields, 'CreationDate') | date: 'dd.MM.yyyy' }}</p>
+
+    <h2>Данные ЗНУ</h2>
+    <p>Наименование услуги: {{ getValue(fields, 'ServiceName') }}</p>
+    <p>Номер интернет заказа: {{ getValue(fields, 'InternetOrderNumber') }}</p>
+    <p>Магазин №: {{ getValue(fields, 'ShopId') }}</p>
+
+    <h2>Файлы запроса</h2>
+  </ng-container>
+
+  <div *ngFor="let f of item.ChangedFields">
+    <label>{{ getName($any(f.Name)) }}:</label>
+    &nbsp;
+    <span>{{ getNameFromDictionary(f.Name, f.CurrentValue) }}</span
+    ><s>{{ getNameFromDictionary(f.Name, f.OriginalValue) }}</s>
+  </div>
+
+  <div *ngFor="let file of item.Files">
+    <label>{{ file.IncidentRequestFileType ? 'Файл запроса' : 'Файл комментария' }}:</label>
+    &nbsp;
+    <span>{{ file.FileName || file.FileStoreId }}</span>
+  </div>
+
+  <p *ngFor="let co of item.Comments" class="comment">{{ co }}</p>
+</ng-container>

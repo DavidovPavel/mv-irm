@@ -1,0 +1,29 @@
+@import '~@irm-ui/common/styles/common';
+
+.stat {
+  text-align: center;
+  white-space: nowrap;
+
+  & > span {
+    font-size: 24px;
+  }
+}
+
+.new {
+  color: $success;
+}
+.work {
+  color: $primary;
+}
+
+.expired {
+  color: $warn;
+}
+
+.accent {
+  color: $accent;
+}
+
+.mat-small {
+  line-height: 1;
+}

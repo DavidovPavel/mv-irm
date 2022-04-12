@@ -1,0 +1,14 @@
+.mat-card-title {
+  margin-bottom: 20px;
+}
+
+.wrap {
+  padding: 0 20px;
+}
+
+.page-content {
+  padding: 0;
+  & .mat-card:first-child {
+    margin-bottom: 20px;
+  }
+}

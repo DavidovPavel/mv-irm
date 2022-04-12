@@ -1,0 +1,36 @@
+<ng-container *ngIf="days$ | async as days">
+  <div fxLayout>
+    <div fxFlex="88px">
+      <label>&nbsp;</label>
+      <label *ngFor="let item of regions" (click)="show(item)">
+        <mat-icon>{{ item.expand ? 'indeterminate_check_box' : 'add_box' }}</mat-icon
+        ><span>{{ item.name }}</span>
+        <div *ngIf="item.expand">
+          <span *ngFor="let interval of item.intervals">
+            {{ interval.intervalValue }}
+          </span>
+        </div>
+      </label>
+    </div>
+    <div>
+      <div class="container" #container>
+        <span class="day" *ngFor="let day of days">{{ day | date: 'dd.MM' }}</span>
+        <div *ngFor="let region of regions">
+          <app-limits *ngFor="let day of days" [day]="day" [region]="region">
+            <div *ngIf="region.expand" fxLayout="column" class="intervals">
+              <span class="day" *ngFor="let limit of region.intervalLimits | intervalByDay: day"
+                >{{ limit.limit }}/{{ limit.reserve }}</span
+              >
+            </div>
+          </app-limits>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button #left class="left" (mousedown)="toLeft($event, container, right)" (mouseup)="stop($event)">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <button #right class="right" (mousedown)="toRight($event, container, left, days.length)" (mouseup)="stop($event)">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+</ng-container>

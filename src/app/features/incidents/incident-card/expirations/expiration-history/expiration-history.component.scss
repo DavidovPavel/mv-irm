@@ -1,0 +1,45 @@
+@import '~@irm-ui/common/styles/common';
+
+.page-content {
+  padding: 10px 40px;
+}
+
+.title {
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+.accordion-item {
+  margin-left: 30px;
+  max-width: 600px;
+  display: block;
+
+  & label {
+    height: 42px;
+    cursor: pointer;
+    color: $text-light;
+    font-size: 16px;
+
+    & > .mat-icon {
+      margin-right: 10px;
+    }
+  }
+
+  & > div {
+    font-size: 14px;
+    line-height: 22px;
+    padding-left: 40px;
+    & div:last-child {
+      margin-bottom: 10px;
+    }
+
+    & b {
+      display: block;
+      margin-bottom: 12px;
+    }
+  }
+
+  & .mat-divider {
+    margin-bottom: 5px;
+  }
+}

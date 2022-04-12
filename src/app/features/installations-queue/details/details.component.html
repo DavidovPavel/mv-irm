@@ -1,0 +1,16 @@
+<h3>{{ (serviceCenter$ | async)?.name }}</h3>
+<div fxLayout *ngIf="loading$ | async; else data">
+  <i>...обновляем данные</i>&nbsp;<mat-spinner [diameter]="20"></mat-spinner>
+</div>
+<ng-template #data>
+  <div fxFlex>
+    <cdk-virtual-scroll-viewport itemSize="*" class="scroll-viewport">
+      <ng-container
+        *cdkVirtualFor="let group of serviceCenterQoutaGroups$ | async; let last = last; trackBy: trackByFn"
+      >
+        <app-group [group]="group" [currentGroupId]="currentGroupId"></app-group>
+        <div *ngIf="last" [style.height.px]="50">&nbsp;</div>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</ng-template>

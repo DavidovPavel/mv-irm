@@ -1,0 +1,30 @@
+<div *ngFor="let item of dataSource" fxLayout fxLayoutAlign="space-between center">
+  <div>
+    <span>{{ item.file.name }}</span>
+    <button mat-icon-button (click)="downloadItem(item)" color="primary">
+      <mat-icon>download</mat-icon>
+    </button>
+  </div>
+  <button mat-icon-button (click)="removeItem(item)" *ngIf="!disableAttachFile" color="warn">
+    <mat-icon matListIcon>clear</mat-icon>
+  </button>
+</div>
+
+<div *ngFor="let item of reserve" fxLayout fxLayoutAlign="space-between center">
+  <span>{{ item.name }}</span>
+  <button mat-icon-button (click)="removeFile(item)" color="warn">
+    <mat-icon matListIcon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="controls">
+  <button mat-button color="primary" (click)="show()" [disabled]="disableAttachFile">
+    <mat-icon>attach_file</mat-icon>
+    <label>Вложить файл</label>
+  </button>
+  <input type="file" #fileUploadInput multiple="multiple" value="upload_file" (change)="fileUploadHandler($event)"
+    [style.display]="'none'" />
+  <mat-error class="upload-error">
+    <mat-error>{{ notifyError }}</mat-error>
+  </mat-error>
+</div>

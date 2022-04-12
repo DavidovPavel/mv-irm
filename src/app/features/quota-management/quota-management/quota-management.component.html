@@ -1,0 +1,38 @@
+<app-right-outlet *ngIf="sapId$ | async as sapId">
+  <span page-title>Управление квотами</span>
+
+  <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!grid?.quotas?.length">Сохранить</button>
+    <button mat-stroked-button color="primary" (click)="export()" [disabled]="!grid?.quotas?.length">
+      <mat-icon>import_export</mat-icon><span>Экспорт в Excel</span>
+    </button>
+  </mat-toolbar>
+
+  <div class="page-container wrap">
+    <app-quota-management-sub-tools
+      [sapId]="sapId"
+      [disabled]="!grid?.quotas?.length"
+      (copyEvent)="copy($event)"
+      (clear)="clear()"
+      fxLayout
+      fxLayoutAlign="space-between center"
+    >
+    </app-quota-management-sub-tools>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px" class="page-content">
+      <ng-container *ngIf="moment$ | async"></ng-container>
+      <mat-card fxFlex="1 0 auto">
+        <mat-card-title>Состояние квот на {{ currentTime }}</mat-card-title>
+        <app-quota-management-data-grid
+          *ngIf="groups$ | async as groups"
+          [appGrid]="groups"
+          #grid="gridSource"
+        ></app-quota-management-data-grid>
+      </mat-card>
+
+      <mat-card fxFlex="300px" *ngrxLet="limits$ as limits">
+        <app-quota-management-calendar [limits]="limits"> </app-quota-management-calendar>
+      </mat-card>
+    </div>
+  </div>
+</app-right-outlet>

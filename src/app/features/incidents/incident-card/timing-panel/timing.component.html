@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-title fxLayout fxLayoutAlign="space-between center">
+    <span>Сроки</span>
+  </mat-card-title>
+  <mat-card-content fxLayout="row wrap">
+    <irm-label-control
+      class="half-width"
+      label="Дата создания"
+      [value]="incident.creationDate | date: 'dd.MM.yyyy HH:mm:ss'"
+    ></irm-label-control>
+
+    <irm-label-control
+      class="half-width"
+      label="Дата переоткрытия"
+      [value]="incident.reopenDate | date: 'dd.MM.yyyy HH:mm:ss'"
+    ></irm-label-control>
+
+    <irm-label-control
+      class="half-width"
+      label="Дата назначения"
+      [value]="incident.appointmentDate | date: 'dd.MM.yyyy HH:mm:ss'"
+    ></irm-label-control>
+
+    <div class="half-width link" *ngIf="incident.expiration">
+      <a routerLink="expiration">Просрочка</a>
+      <div>{{ incident.expiration.scores }}</div>
+    </div>
+
+    <irm-label-control
+      class="half-width"
+      label="Фактическая дата реагирования"
+      [value]="incident.actualReactionDate | date: 'dd.MM.yyyy HH:mm:ss'"
+    ></irm-label-control>
+
+    <irm-label-control
+      class="half-width"
+      label="Дата закрытия"
+      [value]="incident.closeDate | date: 'dd.MM.yyyy HH:mm:ss'"
+    ></irm-label-control>
+  </mat-card-content>
+</mat-card>

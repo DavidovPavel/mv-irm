@@ -1,0 +1,21 @@
+<ng-container *ngIf="serviceCenters$ | async">
+  <div fxLayout fxLayoutAlign="flex-start center">
+    <button mat-button (click)="filterByQuotas()">
+      <span [ngClass]="{ red: !showNotQuotasOnly, gray: showNotQuotasOnly }"></span>
+    </button>
+
+    <mat-form-field>
+      <input matInput placeholder="Сервисный центр" [formControl]="formControl" />
+      <button mat-icon-button matSuffix><mat-icon>search</mat-icon></button>
+      <ng-container *ngIf="valueChanges$ | async"></ng-container>
+    </mat-form-field>
+
+    <app-user-quotas (changeGroups)="filterByGroups($event)"></app-user-quotas>
+  </div>
+
+  <app-service-centers-list
+    [serviceCenters]="filtered"
+    [(currentGroupId)]="currentGroupId"
+    fxFlex
+  ></app-service-centers-list
+></ng-container>

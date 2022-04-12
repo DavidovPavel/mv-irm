@@ -1,0 +1,26 @@
+<ng-container *ngIf="media$ | async"></ng-container>
+
+<div class="head">
+  <ng-container *ngIf="isSidebarOpened; else burger">
+    <div class="logo">IRM&nbsp;<span>3.0</span></div>
+    <mat-icon class="icon" (click)="toggleSidebar()">close</mat-icon>
+  </ng-container>
+  <ng-template #burger>
+    <mat-icon class="burger" (click)="toggleSidebar()">menu</mat-icon>
+  </ng-template>
+</div>
+
+<app-sub-menu></app-sub-menu>
+<mat-nav-list fxFlex *ngIf="permissions$ | async">
+  <cdk-virtual-scroll-viewport itemSize="40" class="scroll-viewport">
+    <ng-container *cdkVirtualFor="let item of menuItems$ | async">
+      <app-menu-item [item]="item" [isSidebarOpened]="isSidebarOpened" *ngxPermissionsOnly="item.permission">
+      </app-menu-item>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+</mat-nav-list>
+
+<div *ngIf="isSidebarOpened" class="footer">
+  <img src="/Main/assets/img/logo_white.png" alt="">
+  <div>Version: {{ version }}</div>
+</div>

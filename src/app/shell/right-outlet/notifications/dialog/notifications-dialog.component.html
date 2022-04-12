@@ -1,0 +1,19 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="list-wrap">
+  <div *cdkVirtualFor="let item of items" class="item">
+    <div class="item-icon" [ngClass]="{
+        'item-icon_normal': item.status === 'normal',
+        'item-icon_danger': item.status === 'danger',
+        'item-icon_good': item.status === 'good'
+      }">
+      <mat-icon fontSet="material-icons-outlined" [ngSwitch]="item.status">
+        <span *ngSwitchCase="'normal'">forum</span>
+        <span *ngSwitchCase="'danger'">error</span>
+        <span *ngSwitchCase="'good'">thumb_up</span>
+      </mat-icon>
+    </div>
+    <div class="item-body">
+      <div class="item-body_title">{{item.title}}</div>
+      <div class="item-body_time">{{item.time}}</div>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

@@ -1,0 +1,13 @@
+@import "../list.scss";
+
+.list > div:last-child > p {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: normal;
+  color: $primary;
+  & .mat-icon,
+  button .mat-icon {
+    color: $text-dark !important;
+  }
+}

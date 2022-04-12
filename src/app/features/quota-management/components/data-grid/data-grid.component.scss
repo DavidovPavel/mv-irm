@@ -1,0 +1,45 @@
+:host {
+  margin: 12px 0 20px;
+}
+
+%cell {
+  border: solid 1px #ccc;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  padding: 2px 6px;
+  box-sizing: border-box;
+}
+
+.groups > div {
+  & > div {
+    &:first-child {
+      flex: 1;
+      @extend %cell;
+    }
+    &:last-child > div {
+      min-width: 80px;
+      height: 26px;
+      @extend %cell;
+    }
+  }
+  &:first-child {
+    & > b:first-child {
+      flex: 1;
+      @extend %cell;
+    }
+    & > b:last-child {
+      min-width: 100px;
+      @extend %cell;
+    }
+  }
+}
+
+.day {
+  width: 160.85px;
+  text-align: center;
+  @extend %cell;
+}
+
+.limits {
+  width: calc(160px * 7);
+}

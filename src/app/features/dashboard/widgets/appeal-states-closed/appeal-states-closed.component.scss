@@ -1,0 +1,29 @@
+@import '~@irm-ui/common/styles/common';
+
+
+.mat-card {
+  margin-bottom: 20px;
+}
+
+.mat-icon {
+  color: $blue_hover;
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+.mat-card-title {
+  font-size: 48px;
+  color: $text-dark;
+  line-height: 56px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mat-card-content {
+  font-size: 16px;
+  line-height: 20px;
+  color: $text-light;
+}

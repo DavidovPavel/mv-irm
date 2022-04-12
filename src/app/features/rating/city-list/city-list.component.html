@@ -1,0 +1,13 @@
+<cdk-virtual-scroll-viewport itemSize="50" fxFlex>
+  <mat-list>
+    <mat-action-list>
+      <ng-container *cdkVirtualFor="let item of items; let last = last">
+        <button mat-list-item (click)="setCity(item);" fxLayout>
+          <span>{{ item.city.name }} </span>
+          <app-ball [color]="item.color"></app-ball>
+        </button>
+        <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+      </ng-container>
+    </mat-action-list>
+  </mat-list>
+</cdk-virtual-scroll-viewport>

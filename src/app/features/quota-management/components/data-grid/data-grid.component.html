@@ -1,0 +1,28 @@
+<div fxLayout>
+  <div fxLayout="column" class="groups">
+    <div fxLayout>
+      <b>Группы</b><b>Периоды</b>
+    </div>
+    <div *ngIf="source.quotas.length">
+      <div [style.height.px]="27"></div>
+    </div>
+    <div *ngFor="let group of source.quotas" fxLayout>
+      <div>{{ group.name }}</div>
+      <div>
+        <div *ngFor="let interval of group.intervals">{{ interval.value }}</div>
+        <ng-container *ngIf="!group.intervals?.length">
+          <div></div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div fxLayout>
+      <div *ngFor="let day of source.days" class="day">{{ day | date: 'dd.MM.yyyy' }}</div>
+    </div>
+    <div class="limits">
+      <hot-table [settings]="hotSettings" [data]="source.dataset">
+      </hot-table>
+    </div>
+  </div>
+</div>

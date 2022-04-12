@@ -1,0 +1,6 @@
+<mat-form-field class="full-width">
+  <mat-label>{{ label }}:</mat-label>
+  <input matInput [matDatepicker]="picker" [value]="formValue" (dateChange)="dateChange($event)" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

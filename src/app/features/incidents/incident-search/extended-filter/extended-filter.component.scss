@@ -1,0 +1,20 @@
+@import '~@irm-ui/common/styles/common';
+
+:host {
+  padding: 20px;
+  display: block;
+}
+
+.data-block {
+  & > div {
+    border-radius: 5px;
+    border: solid 1px $divider;
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+}
+
+.full-width {
+  width: auto;
+  flex: 1;
+}

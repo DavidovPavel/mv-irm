@@ -1,0 +1,220 @@
+<irm-card-container
+  (openState)="panelOpenState = $event"
+  [panelOpenState]="panelOpenState"
+  [appNumberZnu]="incident.numberZNU"
+>
+  <span>Данные запроса</span>
+  <div [@bodyExpansion]="!panelOpenState ? 'collapsed' : 'expanded'">
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+      <irm-text-control
+        label="Номер инцидента/претензии"
+        name="incidentNumber"
+        [form]="formGroup.form"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-text-control>
+
+      <irm-link-control
+        label="Номер ЗНУ"
+        [value]="store.znuInfo$ | async | znuInfo: incident.numberZNU"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-link-control>
+
+      <irm-select-control
+        label="Статус запроса"
+        name="incidentRequestStatusType"
+        [options]="store.requestStatusOptions$ | async"
+        [form]="formGroup.form"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-select-control>
+
+      <irm-text-control
+        label="ФИО клиента"
+        name="clientName"
+        [form]="formGroup.form"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-text-control>
+
+      <irm-text-control
+        label="Телефон клиента"
+        name="clientPhone"
+        [form]="formGroup.form"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-text-control>
+
+      <irm-text-control
+        label="Сервисная компания"
+        name="serviceCompanyName"
+        [form]="formGroup.form"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-text-control>
+
+      <irm-text-control
+        *ngxPermissionsExcept="permissions.IncidentEdit_serviceCenter"
+        label="Сервисный центр"
+        name="serviceCenterName"
+        [form]="formGroup.form"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-text-control>
+
+      <app-autocomplete
+        *ngxPermissionsOnly="permissions.IncidentEdit_serviceCenter"
+        irmFormControl
+        appServiceCenters
+        label="Сервисный центр"
+        name="serviceCenter"
+        [form]="formGroup.form"
+        [options]="store.serviceCenters$ | async"
+        [value]="{ id: incident.serviceCenterId, name: incident.serviceCenterName }"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></app-autocomplete>
+
+      <irm-select-control
+        label="Вина СЦ"
+        name="blameServiceCenterType"
+        [form]="formGroup.form"
+        [options]="store.blameServiceCenterOptions$ | async"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-select-control>
+
+      <irm-select-control
+        label="Причина создания"
+        name="incidentCreationReasonId"
+        [form]="formGroup.form"
+        [options]="store.createReasonProp$ | async"
+        fxFlex.xs="100"
+        fxFlex.sm="45"
+        fxFlex.md="45"
+        fxFlex.lg="30"
+        fxFlex.gt-lg="23"
+      ></irm-select-control>
+
+      <irm-text-control
+        label="Почта отв. сотрудника"
+        name="responsibleEmployeeMail"
+        [form]="formGroup.form"
+        class="full-width"
+      ></irm-text-control>
+
+      <irm-textarea-control
+        class="full-width"
+        label="Суть проблемы/обращения"
+        name="problemEssence"
+        [form]="formGroup.form"
+      ></irm-textarea-control>
+
+      <irm-textarea-control
+        class="full-width"
+        label="Ожидаемое решение"
+        name="expectedSolution"
+        [form]="formGroup.form"
+      ></irm-textarea-control>
+    </div>
+
+    <app-incident-request-files irmIncidentUploadFile [dataSource]="incident.requestFiles"></app-incident-request-files>
+  </div>
+
+  <div
+    class="short"
+    fxLayout="row wrap"
+    fxLayoutGap="16px"
+    [@bodyExpansion]="panelOpenState ? 'collapsed' : 'expanded'"
+  >
+    <div>
+      <label>Номер инцидента/претензии:</label><span>{{ incident.incidentNumber }}</span>
+    </div>
+    <div *ngIf="store.znuInfo$ | async | znuInfo: incident.numberZNU as info">
+      <label>Номер ЗНУ:</label>
+      <a [href]="info[0]" target="_blank">{{ info[1] }}</a>
+    </div>
+    <div>
+      <label>Статус запроса:</label
+      ><span *ngrxLet="store.requestStatusOptions$ as options">{{
+        options[incident.incidentRequestStatusType].name
+      }}</span>
+    </div>
+    <div>
+      <label>ФИО клиента:</label><span>{{ incident.clientName }}</span>
+    </div>
+    <div>
+      <label>Телефон клиента:</label><span>{{ incident.clientPhone }}</span>
+    </div>
+    <div>
+      <label>Сервисная компания:</label><span>{{ incident.serviceCompanyName }}</span>
+    </div>
+    <div>
+      <label>Сервисный центр:</label><span>{{ incident.serviceCenterName }}</span>
+    </div>
+    <div>
+      <label>Вина СЦ:</label
+      ><span *ngrxLet="store.blameServiceCenterOptions$ as options">{{
+        options[incident.blameServiceCenterType || 0].name
+      }}</span>
+    </div>
+    <div>
+      <label>Причина создания:</label><span>{{ incident.incidentCreationReason.name }}</span>
+    </div>
+    <div>
+      <label>Почта отв. сотрудника:</label><span>{{ incident.responsibleEmployeeMail }}</span>
+    </div>
+    <div class="full-width">
+      <label>Суть проблемы/обращения:</label><span>{{ incident.problemEssence }}</span>
+    </div>
+    <div class="full-width">
+      <label>Ожидаемое решение:</label><span>{{ incident.expectedSolution }}</span>
+    </div>
+
+    <div>
+      <label>Файлы запроса:</label>
+      <ng-container *ngFor="let item of incident.requestFiles">
+        <ng-container
+          *ngTemplateOutlet="incidentRequestFileStoresItemReadonlyTemplate; context: { $implicit: item }"
+        ></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</irm-card-container>
+
+<ng-template #incidentRequestFileStoresItemReadonlyTemplate let-item>
+  <span class="file-readonly-template">
+    <span>{{ item.file.name }}</span>
+    <button mat-icon-button (click)="download(item)">
+      <mat-icon>download</mat-icon>
+    </button>
+  </span>
+</ng-template>

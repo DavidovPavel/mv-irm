@@ -1,0 +1,21 @@
+<div *ngFor="let item of dataSource" class="list">
+  <div>
+    <mat-icon>{{ item.roles | commentFileIcon }}</mat-icon>
+  </div>
+  <div>
+    <span>{{ item.file.created | date:'dd.MM.yyyy HH:mm' }}</span> - <span>{{ item.userFullName }}</span>
+    <br>
+    <span>{{ item.userLogin }}</span>
+    <p>
+      <mat-icon>attachment</mat-icon>
+      &nbsp;&nbsp;
+      <span>{{ item.file.name }}</span>
+      <button mat-icon-button (click)="downloadFile(item.id)">
+        <mat-icon>download</mat-icon>
+      </button>
+    </p>
+  </div>
+</div>
+
+<irm-incident-file-upload [disabled]="disabled" [dataSource]="dataSource" [reserveControl]="reserveControl">
+</irm-incident-file-upload>

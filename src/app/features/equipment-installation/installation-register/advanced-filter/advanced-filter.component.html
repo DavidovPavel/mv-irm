@@ -1,0 +1,125 @@
+<div fxLayout fxLayoutAlign="space-between center">
+  <h3>Расширенный фильтр</h3>
+  <button mat-icon-button (click)="close()"><mat-icon>clear</mat-icon></button>
+</div>
+
+<div fxLayout fxLayoutGap="20px">
+  <div fxLayout="row wrap" fxLayoutGap="16px" fxFlex="grow">
+    <app-filter-select
+      label="Бренд"
+      controlName="brand"
+      [source]="store.brands$ | async"
+      [value]="store.brand$ | async"
+      (changed)="collect({ name: 'brand', data: $event })"
+    >
+    </app-filter-select>
+
+    <app-filter-autocomplete
+      label="Магазин"
+      controlName="shop"
+      [source]="store.shops$ | async"
+      [value]="store.shop$ | async"
+      (changing)="store.fetchDictionary({ name: 'shop', params: { ShopName: $event } })"
+      (changed)="collect({ name: 'shop', data: $event })"
+    >
+    </app-filter-autocomplete>
+
+    <app-filter-select
+      label="Канал продаж"
+      controlName="appealType"
+      [source]="store.appealTypes$ | async"
+      [value]="store.appealType$ | async"
+      (changed)="collect({ name: 'appealType', data: $event })"
+    >
+    </app-filter-select>
+
+    <app-filter-autocomplete
+      label="Контрагент"
+      controlName="serviceCompany"
+      [source]="store.serviceCompanies$ | async"
+      [value]="store.serviceCompany$ | async"
+      (changing)="store.fetchDictionary({ name: 'serviceCompany', params: { Name: $event } })"
+      (changed)="collect({ name: 'serviceCompany', data: $event })"
+    >
+    </app-filter-autocomplete>
+  </div>
+
+  <div class="data-block">
+    <div fxLayout="row wrap">
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата продажи от"
+        controlName="saleDateStart"
+        [value]="store.saleDateStart$ | async"
+        (changed)="collect({ name: 'saleDateStart', data: $event })"
+      ></app-filter-datepicker>
+
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата продажи до"
+        controlName="saleDateEnd"
+        [value]="store.saleDateEnd$ | async"
+        (changed)="collect({ name: 'saleDateEnd', data: $event })"
+      ></app-filter-datepicker>
+    </div>
+
+    <div fxLayout="row wrap">
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата желаемой установки от"
+        controlName="serviceDesiredDateStart"
+        [value]="store.serviceDesiredDateStart$ | async"
+        (changed)="collect({ name: 'serviceDesiredDateStart', data: $event })"
+      ></app-filter-datepicker>
+
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата желаемой установки до"
+        controlName="serviceDesiredDateEnd"
+        [value]="store.serviceDesiredDateEnd$ | async"
+        (changed)="collect({ name: 'serviceDesiredDateEnd', data: $event })"
+      ></app-filter-datepicker>
+    </div>
+
+    <div fxLayout="row wrap">
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата установки от"
+        controlName="serviceDateStart"
+        [value]="store.serviceDateStart$ | async"
+        (changed)="collect({ name: 'serviceDateStart', data: $event })"
+      ></app-filter-datepicker>
+
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата установки до"
+        controlName="serviceDateEnd"
+        [value]="store.serviceDateEnd$ | async"
+        (changed)="collect({ name: 'serviceDateEnd', data: $event })"
+      ></app-filter-datepicker>
+    </div>
+
+    <div fxLayout="row wrap">
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата возврата услуги от"
+        controlName="refundCheckDateStart"
+        [value]="store.refundCheckDateStart$ | async"
+        (changed)="collect({ name: 'refundCheckDateStart', data: $event })"
+      ></app-filter-datepicker>
+
+      <app-filter-datepicker
+        class="full-width"
+        label="Дата возврата услуги до"
+        controlName="refundCheckDateEnd"
+        [value]="store.refundCheckDateEnd$ | async"
+        (changed)="collect({ name: 'refundCheckDateEnd', data: $event })"
+      ></app-filter-datepicker>
+    </div>
+  </div>
+</div>
+<p>
+  <button mat-stroked-button color="primary" (click)="clearFilter()">Сбросить фильтр</button>
+  &nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click)="applyFilter()">Применить фильтр</button>
+</p>

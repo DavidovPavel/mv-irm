@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill">
+  <mat-label>Выберите диапазан дат "от" и "до"</mat-label>
+  <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+    <input matStartDate formControlName="start" placeholder="от" />
+    <input matEndDate formControlName="end" placeholder="до" />
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+
+  <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Дата "от" недействительна.</mat-error>
+  <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Дата "до" недействительна.</mat-error>
+</mat-form-field>
+
+<p>
+  <button mat-raised-button color="primary" (click)="closeDialog()">Экспорт</button>
+</p>

@@ -1,0 +1,59 @@
+<ng-container *ngIf="formChanges$ | async"></ng-container>
+<app-right-outlet>
+  <span page-title>Запросы в СЦ</span>
+
+  <div>
+    <app-incident-extended-filter [ngClass]="{ hidden: !showExpanded }" (apply)="showExpanded = false; load()">
+    </app-incident-extended-filter>
+
+    <div [ngClass]="{ hidden: showExpanded }">
+      <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="50%">
+          <input
+            matInput
+            placeholder="Искать запрос по номеру претензии, ЗНУ, Интернет-заказа, заказа TS"
+            [formControl]="superSearch"
+            (keyup.enter)="complicatedSearch()"
+          />
+          <button mat-button matSuffix mat-icon-button aria-label="Искать" (click)="complicatedSearch()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+        <div fxLayout>
+          <app-filter-checkbox
+            *ngxPermissionsOnly="permissions.ExpirationRed"
+            controlName="highlightExpirationRed"
+            label="Просроченные"
+            [value]="!!(store.highlightExpirationRed$ | ngrxPush)"
+            (changed)="load()"
+          ></app-filter-checkbox>
+
+          <app-filter-checkbox
+            *ngxPermissionsOnly="permissions.ExpirationYellow"
+            controlName="highlightExpirationYellow"
+            label="Ждут реакции"
+            [value]="!!(store.highlightExpirationYellow$ | ngrxPush)"
+            (changed)="load()"
+          ></app-filter-checkbox>
+        </div>
+      </mat-toolbar>
+
+      <app-incident-toolbar
+        (expanded)="showExpanded = true"
+        (excel)="excel()"
+        (changed)="load()"
+      ></app-incident-toolbar>
+
+      <app-chips (remove)="load()"></app-chips>
+    </div>
+  </div>
+
+  <div *ngIf="result$ | async as data" class="page-content" [ngClass]="{ hidden: showExpanded }">
+    <app-incident-result-grid
+      [data]="data"
+      [paginatedQuery]="paginatedQuery"
+      (changePaginatedQuery)="setPaginatedQuery($event)"
+    >
+    </app-incident-result-grid>
+  </div>
+</app-right-outlet>

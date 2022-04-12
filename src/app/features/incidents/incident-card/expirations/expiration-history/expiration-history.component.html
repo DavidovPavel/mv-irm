@@ -1,0 +1,52 @@
+<ng-container *ngIf="id$ | async">
+  <app-right-outlet *ngIf="incident$ | async as incident">
+    <span page-title class="title"
+      >Начисление баллов за нарушение сроков обработки запроса по инциденту/претензии:
+      {{ incident.incidentNumber }}</span
+    >
+
+    <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+      <button mat-stroked-button (click)="back()">Назад</button>
+    </mat-toolbar>
+
+    <div class="page-content">
+      <cdk-accordion>
+        <cdk-accordion-item
+          *ngFor="let history of history$ | async"
+          #accordionItem="cdkAccordionItem"
+          role="button"
+          class="accordion-item"
+        >
+          <label fxLayout fxLayoutAlign="center center">
+            <mat-icon *ngxPermissionsOnly="permissions.ExpirationEdit_scores" (click)="showForm(incident, history)"
+              >edit</mat-icon
+            >
+            <div (click)="accordionItem.toggle()" fxFill fxLayoutAlign="space-between center">
+              <span>{{ history.serviceCenterName }}, Просрочка: {{ history.scores }}</span>
+              <mat-icon>{{ accordionItem.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+            </div>
+          </label>
+
+          <div
+            role="region"
+            [style.display]="accordionItem.expanded ? '' : 'none'"
+            *ngFor="let item of history.items; let last = last"
+          >
+            <b>Дата изменения: {{ item.changeDate | date: 'dd.MM.yyyy HH:mm:ss' }}</b>
+            <div>Просрочка: {{ item.scores }}</div>
+            <div *ngIf="item.reasonChange">Причина изменения: {{ item.reasonChange }}</div>
+            <div *ngIf="item.incidentRequestStatus">Статус запроса: {{ item.incidentRequestStatus }}</div>
+            <div *ngIf="item.appointmentDate">
+              Дата назначения: {{ item.appointmentDate | date: 'dd.MM.yyyy HH:mm:ss' }}
+            </div>
+            <div *ngIf="item.departureDate">Дата выезда: {{ item.departureDate | date: 'dd.MM.yyyy' }}</div>
+            <div *ngIf="item.clientName">Пользователь: {{ item.clientName }}</div>
+            <div *ngIf="item.comment">Комментарий: {{ item.comment }}</div>
+            <mat-divider *ngIf="!last" [style.margin]="'10px 0 30px'"></mat-divider>
+          </div>
+          <mat-divider></mat-divider>
+        </cdk-accordion-item>
+      </cdk-accordion>
+    </div>
+  </app-right-outlet>
+</ng-container>

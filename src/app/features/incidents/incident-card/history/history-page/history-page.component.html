@@ -1,0 +1,61 @@
+<ng-container>
+  <app-right-outlet>
+    <span page-title class="title">История запроса по инциденту 21-00037390 </span>
+
+    <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+      <button mat-stroked-button (click)="back()">Назад</button>
+    </mat-toolbar>
+
+    <div class="page-content" fxLayout fxLayoutGap="1%">
+      <mat-card>
+        <mat-card-title>События</mat-card-title>
+        <mat-card-content *ngIf="store.history$ | async as history" class="list">
+          <cdk-virtual-scroll-viewport appendOnly itemSize="120" class="scroll-viewport">
+            <div
+              *cdkVirtualFor="let item of history; let last = last; let i = index"
+              class="history"
+              [ngClass]="{ active: i === current }"
+              (click)="details(item); current = i"
+            >
+              <div fxLayout>
+                <span fxFlex="1 0 80%">
+                  <mat-icon [style.verticalAlign]="'middle'">{{ item.userData?.Roles | commentFileIcon }}</mat-icon>
+                  <span>{{ item.user }}</span
+                  >&nbsp;
+                  <span *ngFor="let e of item.historyEventNames; let l = last">
+                    {{ getTitle(e) }}<span *ngIf="!l">,&nbsp;</span>
+                  </span>
+                </span>
+                <span *ngFor="let e of item.historyEventNames">
+                  <span *ngIf="discs.includes(e)" class="disc {{ e }}"></span>
+                  <mat-icon *ngIf="e === 'IncidentRequestAddCommentsEvent'">comment</mat-icon>
+                  <mat-icon *ngIf="e === 'IncidentRequestAddFilesEvent'">attach_file</mat-icon>
+                  <mat-icon *ngIf="e === 'IncidentRequestSendEmailAction'">mail</mat-icon>
+                </span>
+              </div>
+              <div fxLayout fxLayoutAlign="space-between center">
+                <span class="spot">
+                  <ng-container *ngFor="let a of item.metaData">
+                    {{ a.Comments?.join('; ') }}
+                    {{ a.Subject }}
+                  </ng-container>
+                </span>
+                <span [style.whiteSpace]="'nowrap'">{{ item.historyEventDate | date: 'dd:MM:yyyy hh:mm:ss' }}</span>
+              </div>
+              <mat-divider *ngIf="!last"></mat-divider>
+            </div>
+          </cdk-virtual-scroll-viewport>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-title>Подробности</mat-card-title>
+        <mat-card-content>
+          <cdk-virtual-scroll-viewport appendOnly itemSize="120" class="scroll-viewport">
+            <app-shapshot [content]="currentItem"></app-shapshot>
+          </cdk-virtual-scroll-viewport>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </app-right-outlet>
+</ng-container>

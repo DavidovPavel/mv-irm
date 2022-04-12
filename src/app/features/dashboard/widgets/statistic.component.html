@@ -1,0 +1,16 @@
+<ng-container *ngIf="profile$ | async">
+  <div fxLayoutAlign="space-between center" fxLayoutGap="8px" *ngIf="stats$ | async as stats">
+    <div class="stat">
+      <span>{{ stats!.numberOfNew }}</span>
+      <div class="mat-small">новых</div>
+    </div>
+    <div class="stat">
+      <span>{{ stats!.numberInWork }}</span>
+      <div class="mat-small">в работе</div>
+    </div>
+    <div class="stat expired">
+      <span>{{ stats!.numberOfExpired }}</span>
+      <div class="mat-small">просроченные</div>
+    </div>
+  </div>
+</ng-container>

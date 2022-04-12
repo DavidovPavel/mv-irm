@@ -1,0 +1,8 @@
+<app-right-outlet>
+  <span page-title>{{ (route.firstChild?.data | async)?.title }}</span>
+  <nav mat-tab-nav-bar>
+    <a *ngFor="let item of items" mat-tab-link [routerLink]="item.path" routerLinkActive #a="routerLinkActive"
+      [active]="a.isActive">{{ item.data?.title }}</a>
+  </nav>
+  <router-outlet></router-outlet>
+</app-right-outlet>

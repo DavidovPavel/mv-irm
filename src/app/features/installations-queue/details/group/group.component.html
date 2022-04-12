@@ -1,0 +1,12 @@
+<app-header-group
+  fxLayout
+  fxLayoutAlign="space-between center"
+  [group]="group"
+  (click)="group.isExpanded = !group.isExpanded"
+></app-header-group>
+<app-regions #region
+  [regions]="group.regions"
+  [quotaGroupId]="group.quotaGroupId"
+  [isExpanded]="group.isExpanded"
+  [ngStyle]="{ height: group.isExpanded ? setHeight(region) : 0 }"
+></app-regions>

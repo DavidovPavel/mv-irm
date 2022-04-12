@@ -1,0 +1,34 @@
+<ng-container *ngrxLet="userGroups$ as usergroup">
+  <button
+    mat-icon-button
+    *ngFor="let group of usergroup"
+    [class]="groups.has(group.id) ? 'accent' : 'primary'"
+    [matTooltip]="group.name"
+    (click)="setCurrentGroup(group.id)"
+  >
+    <mat-icon *ngIf="icon(+group.id) as icon; else tmpl">{{ icon }}</mat-icon>
+    <ng-template #tmpl
+      ><span class="label">{{ label(group.name) }}</span></ng-template
+    >
+  </button>
+
+  <ng-container *ngIf="groups$ | async as groups">
+    <button mat-icon-button class="add-group" (click)="sel.open()" matTooltip="Добавить/скрыть групы">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+
+    <mat-select
+      #sel
+      multiple
+      [formControl]="groupControl"
+      [value]="check(groups)"
+      (selectionChange)="selectionChangeGroupMenu($event)"
+    >
+      <mat-option *ngFor="let group of groups" [value]="group">
+        <span matLine>
+          <mat-icon>{{ icon(+group.id) }}</mat-icon> <span>{{ group.name }}</span></span
+        ></mat-option
+      >
+    </mat-select>
+  </ng-container>
+</ng-container>

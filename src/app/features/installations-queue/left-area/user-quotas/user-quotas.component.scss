@@ -1,0 +1,46 @@
+@import '../../styles/list';
+
+:host {
+  display: block;
+  white-space: nowrap;
+}
+
+.add-group {
+  width: 24px;
+  height: 24px;
+  line-height: 12px;
+  & .mat-icon {
+    font-size: 18px;
+    color: $text-lighter;
+  }
+}
+
+.mat-select {
+  visibility: hidden;
+  margin-left: -14px;
+}
+
+.mat-line > .mat-icon {
+  font-size: 18px;
+  margin: 0;
+}
+
+::ng-deep.mat-pseudo-checkbox {
+  position: absolute !important;
+  right: 8px;
+}
+
+.label {
+  border-radius: 20px;
+  padding: 8px;
+  border: solid 1px;
+}
+
+.accent {
+  border-radius: 0;
+  border: inset 1px #ccc;
+}
+
+.primary {
+  border: solid 1px transparent;
+}

@@ -1,0 +1,37 @@
+@import '~@irm-ui/common/styles/common';
+
+@include mat-core();
+
+$success: mat-palette($irm-success);
+$primary: mat-palette($irm-primary);
+$accent: mat-palette($irm-accent);
+$warn: mat-palette($irm-warn, A400);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+.mat-expansion-indicator::after {
+  color: mat-color($primary);
+}
+
+.warn {
+  color: mat-color($warn)
+}
+
+.warn-light {
+  color: mat-color($irm-warn, A200);
+}
+
+.warn-dark-btn {
+  color: white;
+  background-color: mat-color($irm-warn, 500);
+}
+
+.warn-dark {
+  color: mat-color($irm-warn, 500);
+}
+
+.success {
+  color: mat-color($success);
+}
+

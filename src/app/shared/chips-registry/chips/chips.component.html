@@ -1,0 +1,11 @@
+<mat-chip-list>
+  <mat-chip
+    *ngFor="let item of manage.items.entries(); trackBy: trackByFn"
+    (removed)="removeChip(item[0])"
+    selected
+    [removable]="true"
+  >
+    {{ item[1]?.label }}
+    <button matChipRemove><mat-icon>cancel</mat-icon></button>
+  </mat-chip>
+</mat-chip-list>

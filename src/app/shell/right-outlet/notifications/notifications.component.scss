@@ -1,0 +1,53 @@
+:host {
+  display: none;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  position: relative;
+  background-color: white;
+
+  & .dialog {
+    right: 0;
+    top: 20px;
+    z-index: 3;
+    width: 310px;
+    padding: 18px;
+    color: #495057;
+    border-radius: 4px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1px 4px rgb(15 34 58 / 12%);
+  }
+
+  & .title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  & .area {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  & .alert {
+    top: 3px;
+    z-index: 1;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #f74c4c;
+  }
+
+  mat-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+}

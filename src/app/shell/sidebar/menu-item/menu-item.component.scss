@@ -1,0 +1,75 @@
+@import '~@irm-ui/common/styles/common';
+
+$active: #31394d;
+$sub-active: #494c52;
+
+:host {
+  display: block;
+
+  & a {
+    color: #bfc3ce;
+    height: 40px;
+    font-size: 14px;
+
+    &:hover {
+      background-color: $active;
+
+      mat-icon,
+      span {
+        color: $primary;
+      }
+    }
+
+    & mat-icon {
+      width: 22px;
+      height: 22px;
+      font-size: 22px;
+      margin-right: 16px;
+    }
+
+    & span {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    & .active {
+      cursor: default;
+      box-sizing: border-box;
+      background-color: $active;
+      border-left: 2px solid $primary;
+
+      mat-icon,
+      span {
+        color: $primary;
+      }
+    }
+  }
+
+  .submenu {
+    background-color: $active;
+
+    & a {
+      display: block;
+      padding: 0 16px;
+
+      &:hover {
+        background-color: $sub-active;
+
+        & span,
+        mat-icon {
+          color: #fff;
+        }
+      }
+
+      &.sub-active {
+        cursor: default;
+        background-color: $sub-active;
+
+        & span,
+        mat-icon {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

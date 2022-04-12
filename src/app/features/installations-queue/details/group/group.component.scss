@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  margin-bottom: 20px;
+  &.active {
+    box-shadow: -5px 1px 1px rgb(0 0 0 / 20%);
+  }
+}

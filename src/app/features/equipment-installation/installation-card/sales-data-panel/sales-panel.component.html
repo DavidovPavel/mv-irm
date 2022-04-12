@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-title fxLayout fxLayoutAlign="space-between center">
+    <span>Данные о продаже</span>
+    <img [src]="iconSrc" alt="" />
+  </mat-card-title>
+  <mat-card-content fxLayout="row wrap">
+    <irm-label-control label="Наименование услуги" [value]="appeal.serviceName" class="full-width"></irm-label-control>
+
+    <irm-label-control label="Магазин №" [value]="" class="half-width"></irm-label-control>
+
+    <irm-label-control label="Номер чека" [value]="appeal.checkNumber" class="half-width"></irm-label-control>
+
+    <irm-label-control
+      label="Дата продажи"
+      [value]="appeal.saleDate | date: 'dd.MM.yyyy HH:mm:ss'"
+      class="half-width"
+    ></irm-label-control>
+
+    <irm-label-control
+      label="Дата окончания"
+      [value]="appeal.endDate | date: 'dd.MM.yyyy HH:mm:ss'"
+      class="half-width"
+    ></irm-label-control>
+
+    <irm-label-control
+      label="Желаемая дата установки"
+      [value]="appeal.serviceDesiredDate | date: 'dd.MM.yyyy HH:mm:ss'"
+      class="half-width"
+    ></irm-label-control>
+
+    <irm-label-control
+      label="Дата доставки техники"
+      [value]="appeal.deliveryDate | date: 'dd.MM.yyyy HH:mm:ss'"
+      class="half-width"
+    ></irm-label-control>
+
+    <irm-label-control label="Товар доставлен" [value]="" class="half-width"></irm-label-control>
+
+    <irm-label-control label="Интервал установки" [value]="" class="half-width"></irm-label-control>
+
+    <irm-label-control label="Интервал доставки" [value]="" class="half-width"></irm-label-control>
+
+    <irm-label-control label="Номер ЗНД" [value]="appeal.deliveryDemandNumber" class="half-width"></irm-label-control>
+
+    <irm-label-control label="Объект резервирования" [value]="" class="half-width"></irm-label-control>
+
+    <irm-label-control
+      label="Возврат услуги в магазин"
+      [value]="appeal.refundCheckDate | date: 'DD.MM.yyyy HH:mm:ss'"
+      class="half-width"
+    ></irm-label-control>
+
+    <irm-label-control
+      label="Номер интернет-заказа"
+      [value]="appeal.internetOrderNumber"
+      class="half-width"
+    ></irm-label-control>
+
+    <irm-label-control label="Номер заказа TS" [value]="appeal.tsOrderNumber" class="half-width"></irm-label-control>
+
+    <irm-label-control label="Состав чека" [value]="appeal.checkWaresList" class="full-width"></irm-label-control>
+  </mat-card-content>
+</mat-card>

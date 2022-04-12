@@ -1,0 +1,38 @@
+<mat-card *ngIf="profile$ | async">
+  <ng-container *ngIf="serviceCompany$ | async">
+
+    <h3 fxLayout fxLayoutAlign="space-between start">
+      <span>Рейтинг</span>
+      <button mat-mini-fab color="primary" routerLink="/rating">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </h3>
+
+    <div fxLayout fxLayoutAlign="start" [style.padding]="'0 10px'">
+      <label>Город</label>
+      <mat-form-field [style.width.%]="85">
+        <input type="text" matInput [formControl]="citySelect" [matAutocomplete]="auto" (blur)="checkValue()">
+        <button mat-icon-button matSuffix (click)="clear()">
+          <mat-icon [style.color]="'#ccc'">highlight_off</mat-icon>
+        </button>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)=onCity($event)>
+          <mat-option *ngFor="let city of filteredOptions | async" [value]="city">{{ city }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+      <div fxFlex.gt-xs="100" fxFlex.gt-md="48">
+        <h4>Место в городе</h4>
+        <app-map *ngIf="catalog$ | async as catalog" [metrics]="catalog"></app-map>
+      </div>
+      <div fxFlex.gt-xs="100" fxFlex.gt-md="48" fxLayout="column">
+        <h4>Недельные показатели</h4>
+        <app-chart *ngIf="metrics$ | async as data" [metrics]="data"></app-chart>
+        <h4>Оценки клиентов</h4>
+        <app-bar *ngIf="marks$ | async as marks" [marks]="marks"></app-bar>
+      </div>
+    </div>
+  </ng-container>
+
+</mat-card>

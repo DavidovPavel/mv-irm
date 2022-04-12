@@ -1,0 +1,25 @@
+@import '~@irm-ui/common/styles/common';
+
+:host {
+  margin-top: 16px;
+  padding: 0 16px 10px;
+  display: block;
+
+  & > div:first-child {
+    border-bottom: solid 1px $text-lighter;
+    margin-bottom: 20px;
+  }
+}
+
+.mat-icon {
+  color: $text-lighter;
+}
+
+.data-block {
+  & > div {
+    border-radius: 5px;
+    border: solid 1px $divider;
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+}

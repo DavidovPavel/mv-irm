@@ -1,0 +1,13 @@
+:host {
+  margin-top: 10px;
+
+  & div:last-child {
+    padding-bottom: 16px;
+  }
+}
+
+button {
+  .mat-icon {
+    margin-right: 8px;
+  }
+}

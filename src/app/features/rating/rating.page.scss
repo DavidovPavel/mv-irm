@@ -1,0 +1,35 @@
+@import '~@irm-ui/common/styles/common';
+
+:host {
+  .mat-button-toggle-group,
+  .mat-button-toggle {
+    border: 0;
+  }
+
+  .mat-button-toggle {
+    &.active {
+      & app-ball {
+        opacity: 1;
+      }
+    }
+    & app-ball {
+      opacity: 0.4;
+    }
+  }
+
+  & .page-content {
+    & .mat-card:last-child {
+      text-align: center;
+      overflow: auto;
+    }
+  }
+
+  ::ng-deep .mat-list-item-content {
+    flex: 1;
+    justify-content: space-between;
+  }
+}
+
+.mat-divider {
+  border-top-color: $divider;
+}

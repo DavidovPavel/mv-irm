@@ -1,0 +1,15 @@
+@import '~@irm-ui/common/styles/common';
+@import '../../styles/tile.scss';
+
+.mat-card {
+  margin: 0 0 20px;
+  cursor: pointer;
+  min-height: 94px;
+
+  .mat-card-title {
+    font-size: 20px;
+    color: $text-dark;
+    margin-bottom: 12px;
+    font-weight: normal;
+  }
+}

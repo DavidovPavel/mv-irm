@@ -1,0 +1,8 @@
+<div class="dialog" *ngIf="notifyDialogOpened">
+  <div class="title">Уведомления</div>
+  <div class="separator"></div>
+  <app-notifications-dialog></app-notifications-dialog>
+</div>
+<div class="area" (click)="notifyDialogOpened=!notifyDialogOpened"></div>
+<div class="alert"></div>
+<mat-icon fontSet="material-icons-outlined">notifications</mat-icon>

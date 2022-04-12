@@ -1,0 +1,12 @@
+@import '../styles/list';
+@import '../styles/filter';
+
+.mat-form-field {
+  width: $label_width;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.mat-button {
+  @include filter;
+}

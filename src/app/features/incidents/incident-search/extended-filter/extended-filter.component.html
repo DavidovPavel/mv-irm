@@ -1,0 +1,102 @@
+<mat-card>
+  <mat-card-title>Расширенный фильтр</mat-card-title>
+
+  <div fxLayout fxLayoutGap="20px" [style.paddingTop.px]="10">
+    <div fxLayout="row wrap" fxLayoutGap="16px" fxFlex="grow" [formGroup]="collector.form">
+      <app-filter-autocomplete
+        class="full-width"
+        label="Канал продаж"
+        controlName="salesChannel"
+        [source]="store.salesChannels$"
+        [value]="store.salesChannel$ | async"
+      >
+      </app-filter-autocomplete>
+
+      <app-filter-autocomplete
+        class="full-width"
+        label="Контрагент"
+        controlName="serviceCompanyId"
+        [source]="store.serviceCompanies$"
+        [value]="store.serviceCompany$ | async"
+      >
+      </app-filter-autocomplete>
+
+      <app-filter-autocomplete
+        class="full-width"
+        label="Город"
+        controlName="cityId"
+        [source]="store.cities$"
+        [value]="store.city$ | async"
+      >
+      </app-filter-autocomplete>
+
+      <app-filter-autocomplete
+        appCheckUserAsShop
+        class="full-width"
+        label="Магазин"
+        controlName="shopId"
+        [source]="store.shops$"
+        [value]="store.shop$ | async"
+        (changed)="apply.emit()"
+      >
+      </app-filter-autocomplete>
+
+      <app-filter-autocomplete
+        class="full-width"
+        label="Бренд"
+        controlName="brand"
+        [source]="store.brands$"
+        [value]="store.brand$ | async"
+      >
+      </app-filter-autocomplete>
+
+      <app-filter-autocomplete
+        class="full-width"
+        label="Вина СЦ"
+        controlName="blameServiceCenterType"
+        [source]="store.blameServiceCenters$"
+        [value]="store.blameServiceCenter$ | async"
+      >
+      </app-filter-autocomplete>
+    </div>
+
+    <div class="data-block">
+      <div fxLayout="row wrap">
+        <app-filter-datepicker
+          class="full-width"
+          label="Дата создания от"
+          controlName="creationDateRange.from"
+          [value]="store.creationDateRangeFrom$ | async"
+        ></app-filter-datepicker>
+
+        <app-filter-datepicker
+          class="full-width"
+          label="Дата создания до"
+          controlName="creationDateRange.to"
+          [value]="store.creationDateRangeTo$ | async"
+        ></app-filter-datepicker>
+      </div>
+
+      <div fxLayout="row wrap">
+        <app-filter-datepicker
+          class="full-width"
+          label="Дата закрытия от"
+          controlName="closeDateRange.from"
+          [value]="store.closeDateRangeFrom$ | async"
+        ></app-filter-datepicker>
+
+        <app-filter-datepicker
+          class="full-width"
+          label="Дата закрытия до"
+          controlName="closeDateRange.to"
+          [value]="store.closeDateRangeTo$ | async"
+        ></app-filter-datepicker>
+      </div>
+    </div>
+  </div>
+  <p>
+    <button mat-stroked-button color="primary" (click)="clearFilter()">Сбросить фильтр</button>
+    &nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="applyFilter()">Применить фильтр</button>
+  </p>
+</mat-card>

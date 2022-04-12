@@ -1,0 +1,40 @@
+<div fxLayout fxLayoutGap="20px" fxLayoutAlign="space-between center">
+  <div fxLayout fxLayoutGap="20px" fxLayoutAlign="start center">
+    <app-filter-select
+      [multiple]="true"
+      label="Статус запроса"
+      controlName="incidentRequestStatusType"
+      [source]="store.incidentRequestStatuses$"
+      [value]="store.incidentRequestStatus$ | async"
+      (changed)="changed.emit()"
+    ></app-filter-select>
+
+    <app-filter-autocomplete
+      label="Сервисный центр"
+      controlName="serviceCenterId"
+      [source]="store.serviceCenters$"
+      [value]="store.serviceCenter$ | async"
+      (changed)="changed.emit()"
+    >
+    </app-filter-autocomplete>
+
+    <button
+      *ngrxLet="store.chips$; let chips"
+      mat-stroked-button
+      color="primary"
+      (click)="toExpanded()"
+      [matBadgeHidden]="!chips.size"
+      [matBadge]="chips.size"
+      matBadgeSize="small"
+      matBadgeColor="accent"
+    >
+      <mat-icon>filter_list</mat-icon>
+      &nbsp;
+      <span>Расширенный фильтр</span>
+    </button>
+  </div>
+
+  <button mat-stroked-button color="primary" (click)="startExcel()">
+    <mat-icon>import_export</mat-icon><span>Экспорт в Excel</span>
+  </button>
+</div>

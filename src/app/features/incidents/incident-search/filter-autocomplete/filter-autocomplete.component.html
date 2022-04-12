@@ -1,0 +1,16 @@
+<mat-form-field>
+  <mat-label>{{ label }}</mat-label>
+  <input type="text" matInput [formControl]="formControl" [value]="formValue" [matAutocomplete]="auto" (blur)="clear()" />
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [panelWidth]="'auto'"
+    [displayWith]="displayFn"
+    (optionSelected)="selected($event)"
+  >
+    <mat-option *ngFor="let item of source | async" [value]="item">
+      {{ item.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<ng-container *ngrxLet="valueChange$"></ng-container>

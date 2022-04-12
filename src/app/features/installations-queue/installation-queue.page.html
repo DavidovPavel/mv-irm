@@ -1,0 +1,13 @@
+<app-right-outlet>
+  <span page-title>Очередь установок</span>
+  <div class="page-content" *ngIf="sapId$ | ngrxPush">
+    <div fxLayout fxLayoutGap="1%" fxFlex>
+      <app-left-area fxFlex="0 1 auto" fxLayout="column" #left></app-left-area>
+      <app-service-centers-details
+        [currentGroup]="left.currentGroupId"
+        fxFlex="1 0 auto"
+        fxLayout="column"
+      ></app-service-centers-details>
+    </div>
+  </div>
+</app-right-outlet>

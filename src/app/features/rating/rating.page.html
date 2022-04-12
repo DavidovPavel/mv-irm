@@ -1,0 +1,42 @@
+<app-right-outlet>
+  <span page-title>Информация по городам сервисного центра</span>
+  <div class="page-content" fxLayout fxLayoutGap="2%" *ngIf="profile$ | async">
+    <ng-container *ngIf="serviceCompany$ | async as sc">
+      <mat-card fxFlex="38" fxLayout="column">
+        <div style="padding: 6px 0 16px">Сервисные центры</div>
+        <mat-divider [inset]="true"></mat-divider>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+          <span>{{ sc.name }}</span>
+          <mat-button-toggle-group [(ngModel)]="colors" multiple>
+            <mat-button-toggle *ngFor="let name of colorsName" [ngClass]="{active: colors.includes(Color[name])}"
+              [value]="Color[name]">
+              <app-ball [color]="Color[name]"></app-ball>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+        <ng-container *ngIf="catalog$| async as catalog">
+          <app-city-list [data]="catalog | cities" [filter]="colors" (current)="setCity($event)" fxFlex></app-city-list>
+        </ng-container>
+      </mat-card>
+
+      <mat-card fxFlex="70">
+        <h3>{{ label }}</h3>
+        <p>
+          {{ serviceCentersCount ? serviceCentersCount === 1 ? 'Единственный СЦ в городе' : overallRank + '-е место в городе' : ''  }}
+        </p>
+
+        <div fxLayout="column" style="max-width: 500px; margin: 0 auto;">
+          <h4>Недельные показатели</h4>
+          <ng-container *ngIf="metrics$ | async as metrics">
+            <app-chart [metrics]="metrics"></app-chart>
+            <app-grid [metrics]="metrics"></app-grid>
+          </ng-container>
+
+          <h4>Оценки клиентов</h4>
+          <app-bar *ngIf="marks$ | async as marks" [marks]="marks"></app-bar>
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</app-right-outlet>

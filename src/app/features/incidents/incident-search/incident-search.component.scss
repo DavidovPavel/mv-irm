@@ -1,0 +1,20 @@
+.mat-toolbar {
+  padding: 0 16px !important;
+  margin-bottom: 8px;
+
+  & > div {
+    font-size: 16px;
+    font-weight: normal;
+    & app-filter-checkbox:first-child {
+      margin-right: 16px;
+    }
+  }
+}
+
+.page-content {
+  padding-top: 0;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,14 @@
+<ng-container *ngIf="region$ | async"></ng-container>
+<mat-form-field>
+  <mat-label>Сервисный центр</mat-label>
+  <mat-select [formControl]="serviceCenterFc">
+    <mat-option *ngFor="let item of serviceCenters" [value]="item.id">{{ item.name }}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Город</mat-label>
+  <mat-select [formControl]="regionFc">
+    <mat-option *ngFor="let item of regions$ | async" [value]="item.id">{{ item.name }}</mat-option>
+  </mat-select>
+</mat-form-field>
+

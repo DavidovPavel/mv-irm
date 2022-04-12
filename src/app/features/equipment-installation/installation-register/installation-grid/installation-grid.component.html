@@ -1,0 +1,19 @@
+<irm-grid
+  *ngIf="dataSource$ | async as dataSource"
+  [dataSource]="dataSource.response"
+  [gridConfig]="gridConfig"
+  [totalSize]="dataSource.totalCount"
+  [paginatedQuery]="paginatedQuery"
+  (changePaginatedQuery)="changePage($event)"
+>
+  <ng-template name="title" let-row>{{
+    row.clientFirstName + ' ' + row.clientMiddleName + ' ' + row.clientLastName + ' ' + row.couponNumber
+  }}</ng-template>
+
+  <ng-template name="bsiStatus" let-row>{{ find(row.bsiStatus, 'appealStatus') }}</ng-template>
+  <ng-template name="serviceStatus" let-row>{{ find(row.status, 'serviceStatus') }}</ng-template>
+
+  <ng-template name="saleDate" let-row>{{ row.saleDate | date: 'dd.MM.yyyy' }}</ng-template>
+  <ng-template name="serviceDesiredDate" let-row>{{ row.serviceDesiredDate | date: 'dd.MM.yyyy' }}</ng-template>
+  <ng-template name="serviceDate" let-row>{{ row.serviceDate | date: 'dd.MM.yyyy' }}</ng-template>
+</irm-grid>

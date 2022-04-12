@@ -1,0 +1,24 @@
+<mat-card routerLink="history">
+  <mat-card-title>
+    <span>История</span>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="history" *ngFor="let item of store.history$ | async; let last = last">
+      <div fxLayout>
+        <div>
+          {{ item.historyEventDate | date: 'dd:MM:yyyy hh:mm:ss' }}<br />
+          {{ item.user }}
+          <br />
+          <ng-container *ngFor="let e of item.historyEventNames"> {{ event[e] }}<br /> </ng-container>
+        </div>
+        <ng-container *ngFor="let e of item.historyEventNames">
+          <span *ngIf="discs.includes(e)" class="disc {{ e }}"></span>
+          <mat-icon *ngIf="e === 'IncidentRequestAddCommentsEvent'">comment</mat-icon>
+          <mat-icon *ngIf="e === 'IncidentRequestAddFilesEvent'">attach_file</mat-icon>
+          <mat-icon *ngIf="e === 'IncidentRequestSendEmailAction'">mail</mat-icon>
+        </ng-container>
+      </div>
+      <mat-divider *ngIf="!last"></mat-divider>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,13 @@
+<mat-tab-group>
+  <mat-tab label="Комментарии">
+    <app-incident-comment-list [form]="formGroup.form" [dataSource]="comments" [disabled]="disabledSendComment"
+      (send)="addComment($event)">
+    </app-incident-comment-list>
+  </mat-tab>
+  <mat-tab label="Файлы ( {{ commentFiles.length }} )">
+    <app-incident-file-list [dataSource]="commentFiles" [reserveControl]="controlCommentFiles"
+      [disabled]="disableAttachFile" (add)="addFiles($event)" (remove)="removeFileStores($event)"
+      (download)="download($event)">
+    </app-incident-file-list>
+  </mat-tab>
+</mat-tab-group>

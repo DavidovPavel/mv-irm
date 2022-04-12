@@ -1,0 +1,6 @@
+<mat-chip-list>
+  <mat-chip *ngFor="let chip of (store.chips$ | async)?.values()" (removed)="removeChip(chip)" selected [removable]="true">
+    {{ chip.label }}
+    <button matChipRemove><mat-icon>cancel</mat-icon></button>
+  </mat-chip>
+</mat-chip-list>

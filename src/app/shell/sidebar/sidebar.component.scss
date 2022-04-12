@@ -1,0 +1,54 @@
+
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.head {
+  height: 59px;
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #344258;
+
+  & .logo {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+
+    span {
+      color: #4484bf;
+      font-weight: 400;
+    }
+  }
+
+  & .icon,
+  & .burger {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+}
+
+mat-nav-list {
+  margin: 12px 0 4px;
+  padding: 0;
+}
+
+.footer {
+  padding: 6px 0 16px 20px;
+  box-sizing: border-box;
+
+  & div {
+    font-size: 10px;
+  }
+  & img {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+}

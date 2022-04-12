@@ -1,0 +1,33 @@
+@import "~@irm-ui/common/styles/common";
+
+@import "../../incident-card/comments/list.scss";
+
+:host {
+  display: block;
+}
+
+.list > div:last-child > p {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: normal;
+  color: $primary;
+  & .mat-icon,
+  button .mat-icon {
+    color: $text-dark !important;
+  }
+}
+
+.controls {
+  padding: 10px 36px 24px;
+  & > button {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid $text-lighter;
+  }
+}
+
+.upload-error {
+  font-size: 75%;
+  text-align: right;
+}

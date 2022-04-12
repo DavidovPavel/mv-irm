@@ -1,0 +1,50 @@
+<div fxLayout fxLayoutGap="20px" fxLayoutAlign="space-between center">
+  <div fxLayout fxLayoutGap="20px" fxLayoutAlign="start center">
+    <app-filter-select
+      label="Состояние заявки"
+      controlName="serviceStatus"
+      [source]="store.statusList$ | async"
+      [value]="store.status$ | async"
+      (changed)="store.loadOne({ name: 'serviceStatus', data: $event }); apply.emit()"
+    ></app-filter-select>
+
+    <app-filter-autocomplete
+      label="Сервисный центр"
+      controlName="serviceCenter"
+      [source]="store.serviceCenters$ | async"
+      [value]="store.serviceCenter$ | async"
+      (changing)="store.fetchDictionary({ name: 'serviceCenter', params: { name: $event } })"
+      (changed)="store.loadOne({ name: 'serviceCenter', data: $event }); apply.emit()"
+    >
+    </app-filter-autocomplete>
+
+    <app-filter-autocomplete
+      label="Город"
+      controlName="city"
+      [source]="store.cities$ | async"
+      [value]="store.city$ | async"
+      (changing)="store.fetchDictionary({ name: 'city', params: { cityName: $event } })"
+      (changed)="store.loadOne({ name: 'city', data: $event }); apply.emit();"
+    >
+    </app-filter-autocomplete>
+
+    <button
+      *ngrxLet="store.chipCount$; let count"
+      mat-stroked-button
+      color="primary"
+      (click)="toExpanded()"
+      [matBadgeHidden]="!count"
+      [matBadge]="count"
+      matBadgeSize="small"
+      matBadgeColor="accent"
+    >
+      <mat-icon>filter_list</mat-icon>
+      &nbsp;
+      <span>Расширенный фильтр</span>
+    </button>
+  </div>
+
+  <button mat-stroked-button color="primary" (click)="startExcel()">
+    <mat-icon>import_export</mat-icon><span>Экспорт в Excel</span>
+  </button>
+</div>

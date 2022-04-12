@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-title fxLayout fxLayoutAlign="space-between center">
+    <span>Данные ЗНУ</span>
+    <img [src]="icon" alt="" />
+  </mat-card-title>
+  <mat-card-content fxLayout="row wrap">
+    <irm-label-control
+      class="full-width"
+      label="Наименование услуги"
+      [value]="incident.serviceName"
+    ></irm-label-control>
+
+    <irm-label-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      label="Номер интернет заказа"
+      [value]="incident.internetOrderNumber"
+    ></irm-label-control>
+
+    <irm-label-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      label="Номер заказа TS"
+      [value]="incident.tsOrderNumber"
+    ></irm-label-control>
+
+    <irm-label-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      label="Канал продаж"
+      [value]="saleChannel[incident.saleChannel]"
+    ></irm-label-control>
+
+    <irm-label-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      label="Магазин №"
+      [value]="incident.shop?.name"
+    ></irm-label-control>
+
+    <irm-label-control
+      [fxFlex.xs]="100"
+      [fxFlex.sm]="45"
+      [fxFlex.md]="45"
+      [fxFlex.lg]="30"
+      [fxFlex.gt-lg]="23"
+      label="Город"
+      [value]="incident.city?.name"
+    ></irm-label-control>
+  </mat-card-content>
+</mat-card>

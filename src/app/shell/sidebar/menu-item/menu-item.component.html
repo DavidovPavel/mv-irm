@@ -1,0 +1,28 @@
+<a [appSubMenu]="item" mat-list-item [href]="item.url" *ngIf="item.outside; else link">
+  <mat-icon>{{item.icon}}</mat-icon> <span>{{ item.name }}</span>
+</a>
+
+<ng-template #link>
+  <a mat-list-item [routerLink]="[item.url]" routerLinkActive="active" #rla="routerLinkActive" [appSubMenu]="item">
+    <mat-icon [matTooltip]="isSidebarOpened ? '' : item.children?.length ? '' : item.name">{{item.icon}}
+    </mat-icon>
+    <span>{{ item.name }}</span>
+  </a>
+  <div *ngIf="item.children?.length && rla.isActive" class="submenu">
+    <ng-container *ngFor="let e of item.children">
+      <ng-container *ngxPermissionsOnly="e.permission?e.permission.toString(): ''">
+        <a [href]="e.url" *ngIf="e.outside; else rl" fxLayout fxLayoutAlign="start center">
+          <mat-icon>{{e.icon}}</mat-icon> <span>{{ e.name }}</span>
+        </a>
+        <ng-template #rl>
+          <a [routerLink]="e.url" routerLinkActive="sub-active" fxLayout fxLayoutAlign="start center">
+            <mat-icon [matTooltip]="isSidebarOpened ? '' : e.name">
+              {{e.icon}}
+            </mat-icon>
+            <span>{{ e.name }}</span>
+          </a>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>

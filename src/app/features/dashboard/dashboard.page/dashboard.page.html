@@ -1,0 +1,57 @@
+<app-right-outlet *ngIf="profile$ | async">
+
+  <div style="padding: 20px" class="page-content">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+      <ng-container *ngTemplateOutlet="tiles; context: { $implicit: tilesTop }"></ng-container>
+    </div>
+
+    <div class="company-block" *ngIf="serviceCompany$ | async as sc">
+      <h1>Информация по сервисной компании - {{ sc.name }}</h1>
+      <div fxLayout.lt-sm fxLayoutAlign.gt-sm="space-between">
+        <div fxLayout="column" fxFlex="49" fxFlex.xs="100">
+          <div fxLayout="row wrap" fxLayoutAlign="space-between">
+            <app-check-quotas fxLayout fxFlex.gt-xs="100" fxFlex.gt-md="48"></app-check-quotas>
+            <app-appeal-states-closed fxFlex.gt-xs="100" fxFlex.gt-md="48"></app-appeal-states-closed>
+          </div>
+          <app-installation-queue-services fxFlex="100" [style.marginBottom.px]="20"></app-installation-queue-services>
+        </div>
+        <app-rating-widget fxFlex="49" fxFlex.xs="100"></app-rating-widget>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+      <ng-container *ngTemplateOutlet="tiles; context: { $implicit: tilesBottom }"></ng-container>
+    </div>
+  </div>
+</app-right-outlet>
+
+<ng-template #tiles let-data>
+  <ng-container *ngFor="let tile of data">
+    <a *ngIf="tile.inside; else link" [routerLink]="[tile.url]" fxFlex.xs="100" fxFlex.gt-xs="49" fxFlex.gt-md="24">
+      <ng-container *ngTemplateOutlet="item; context: { $implicit: tile }"></ng-container>
+    </a>
+    <ng-template #link>
+      <a [href]="tile.url" fxFlex.xs="100" fxFlex.gt-xs="49" fxFlex.gt-md="24">
+        <ng-container *ngTemplateOutlet="item; context: { $implicit: tile }"></ng-container>
+      </a>
+    </ng-template>
+  </ng-container>
+</ng-template>
+
+<ng-template #item let-tile>
+  <app-tile>
+    <span>{{ tile.title }}</span>
+    <div content>
+      <span *ngIf="tile.description" fxLayoutAlign="start" class="mat-small description">
+        <ng-container *ngIf="tile.description.text; else text">
+          <ng-container *ngxPermissionsOnly="tile.description.permission">{{ tile.description.text }}</ng-container>
+        </ng-container>
+        <ng-template #text> {{ tile.description }} </ng-template>
+      </span>
+
+      <ng-container *ngIf="tile.component">
+        <ng-container *ngComponentOutlet="tile.component"></ng-container>
+      </ng-container>
+    </div>
+  </app-tile>
+</ng-template>

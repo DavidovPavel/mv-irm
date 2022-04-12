@@ -1,0 +1,18 @@
+<div fxLayoutAlign="space-around baseline" fxLayoutGap="8px" *ngIf="stats$ | async as stats">
+  <div class="stat">
+    <span>{{ stats.numberNewRequests }}</span>
+    <div class="mat-small">новых</div>
+  </div>
+  <div class="stat">
+    <span>{{ stats.numberInProgressRequests }}</span>
+    <div class="mat-small">в работе</div>
+  </div>
+  <div *ngIf="stats.willExpireRequests" class="stat accent">
+    <span>{{ stats.willExpireRequests }}</span>
+    <div class="mat-small">ждут<br>реакции</div>
+  </div>
+  <div *ngIf="stats.expiredRequests" class="stat expired">
+    <span>{{ stats.expiredRequests }}</span>
+    <div class="mat-small">просроченные</div>
+  </div>
+</div>

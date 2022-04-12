@@ -1,0 +1,44 @@
+<mat-card>
+  <h3 fxLayoutAlign="space-between center">
+    <span>Очередь установок</span>
+    <button mat-mini-fab color="primary" [routerLink]="['/installation-queue']">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </h3>
+
+  <div fxLayout fxLayoutAlign="start" [style.padding]="'0 10px'">
+    <label>Сервисный центр</label>
+    <mat-form-field fxFlex>
+      <input type="text" matInput [formControl]="formControl" [matAutocomplete]="auto" />
+      <button mat-icon-button matSuffix (click)="clear()">
+        <mat-icon [style.color]="'#ccc'">highlight_off</mat-icon>
+      </button>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="select($event)" [displayWith]="displayFn">
+        <mat-option *ngFor="let item of serviceCenters$ | async" [value]="item">{{ item.name }}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <ng-container *ngrxLet="valueChanges$"></ng-container>
+  </div>
+
+  <div *ngIf="loading$ | async; else list" class="loading">
+    <i>...обновление данных</i>&nbsp;<mat-spinner [diameter]="16"></mat-spinner>
+  </div>
+
+  <ng-template #list>
+    <mat-list *ngFor="let item of quotaGroups$ | async; let last = last">
+      <mat-list-item>
+        <div matLine fxLayout fxLayoutAlign="space-between center" (click)="currentGroup(item.id)">
+          <span>{{ item.name }}</span>
+          <span>
+            <span class="red" *ngIf="item.totalWithoutQuotas">{{ item.totalWithoutQuotas }} СЦ</span>
+            <span *ngFor="let region of item.regions" class="region" [ngClass]="{ red: region.hasQuotas === false }">{{
+              region.name
+            }}</span>
+          </span>
+        </div>
+      </mat-list-item>
+      <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+    </mat-list>
+  </ng-template>
+</mat-card>
+<ng-container *ngrxLet="serviceCenterQoutaGroups$"></ng-container>

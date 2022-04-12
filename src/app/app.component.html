@@ -1,0 +1,10 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [ngClass]="{'min-sidenav': !isSidebarOpen}" [opened]="true" role="navigation">
+    <app-sidebar (sidebarOpen)="isSidebarOpen=$event"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content [ngClass]="{'max-main-content': !isSidebarOpen}" role="main">
+    <app-preloader></app-preloader>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<ng-container *ngIf="showSnackBar$ | async"></ng-container>

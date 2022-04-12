@@ -1,0 +1,35 @@
+<mat-list>
+  <cdk-virtual-scroll-viewport itemSize="40" class="scroll-viewport">
+    <ng-container *cdkVirtualFor="let item of serviceCenters; let last = last">
+      <mat-list-item
+        [ngClass]="item.id.toString() === serviceCenterId ? 'warn' : 'primary'"
+        (click)="showServiceCentersDetails(item.id)"
+      >
+        <div matLine fxLayout fxLayoutAlign="flex-start center">
+          <button mat-button>
+            <span [ngClass]="{ red: !item.hasQuotas, gray: item.hasQuotas }"></span>
+          </button>
+          <span>{{ item.name }}</span>
+          <div class="groups-balls" *ngIf="quotaGroups$ | async">
+            <ng-container *ngrxLet="userQuotaGroups$ as groups">
+              <button
+                mat-button
+                *ngFor="let group of check(item.groups, groups)"
+                [ngClass]="{ active: group.quotaGroupId.toString() === currentGroupId }"
+                (click)="showDetailsByGroupId($event, group.quotaGroupId.toString(), item.id)"
+              >
+                <span
+                  [ngClass]="{
+                    red: group.hasQuotas === false,
+                    gray: group.hasQuotas
+                  }"
+                ></span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+</mat-list>

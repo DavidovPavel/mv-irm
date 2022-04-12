@@ -1,0 +1,38 @@
+<app-right-outlet>
+  <span page-title>Установка техники</span>
+
+  <div [ngClass]="{ hidden: showAdvanced }">
+    <mat-toolbar>
+      <mat-form-field fxFlex="50%">
+        <input
+          #search
+          matInput
+          placeholder="Введите данные для поиска"
+          (keyup.enter)="complicatedSearch(search.value)"
+        />
+        <button mat-button matSuffix mat-icon-button aria-label="Искать" (click)="complicatedSearch(search.value)">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-toolbar>
+
+    <app-registry-toolbar (apply)="load()" (expanded)="showAdvanced = true" (excel)="excel()"></app-registry-toolbar>
+    <app-chips-registry (remove)="removeChip($event); load()"></app-chips-registry>
+  </div>
+
+  <div class="page-content">
+    <app-advanced-filter
+      [ngClass]="{ hidden: !showAdvanced }"
+      (apply)="showAdvanced = false; $event ? load() : null"
+      class="mat-elevation-z2"
+    ></app-advanced-filter>
+
+    <app-installation-grid
+      [ngClass]="{ hidden: showAdvanced }"
+      class="mat-elevation-z2"
+      [paginatedQuery]="paginatedQuery"
+      (changePaginatedQuery)="setPaginatedQuery($event); load()"
+    ></app-installation-grid>
+  </div>
+</app-right-outlet>
+<ng-container *ngIf="params$ | async"></ng-container>

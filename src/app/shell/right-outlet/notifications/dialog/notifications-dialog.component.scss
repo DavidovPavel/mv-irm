@@ -1,0 +1,43 @@
+.list-wrap {
+    height: 220px;
+
+    .item {
+      width: 100%;
+      display: flex;
+      padding: 10px 0;
+
+      &-icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        margin-right: 14px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+
+        &_normal { color: #727CF5; background-color: #F1F2FE; }
+        &_danger { color: #FF386A; background-color: #FFEAEF; }
+        &_good { color: #34C38F; background-color: #E7F8EE; }
+        mat-icon {
+          width: 15px;
+          height: 15px;
+          font-size: 15px;
+        }
+      }
+
+      &-body {
+        &_title {
+          font-size: 13px;
+          font-weight: 500;
+        }
+        &_time {
+          font-size: 11px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 0.4);
+        }
+      }
+      :first-child { padding-top: 0; }
+      :last-child { padding-bottom: 0; }
+    }
+  }
+

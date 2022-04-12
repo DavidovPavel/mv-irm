@@ -1,0 +1,88 @@
+@import '~@irm-ui/common/styles/common';
+
+@mixin icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  opacity: 0.6;
+}
+
+:host {
+  padding: 0 6px;
+  margin-bottom: 0;
+  margin-top: 0;
+  min-height: 38px;
+  background-color: #ebebeb;
+  font-size: 14px;
+  font-weight: 400;
+  color: $text-light;
+  cursor: pointer;
+
+  & > .mat-icon {
+    opacity: 0.54;
+    @include icon;
+    margin-left: 8px;
+  }
+
+  & > div {
+    & > .mat-icon {
+      @include icon;
+    }
+  }
+}
+
+.right {
+  justify-content: flex-end;
+  flex: 1;
+
+  & .average {
+    margin-left: 8px;
+    border: solid 1px $text-lighter;
+    color: $text-lighter;
+    border-radius: 2px;
+    font-size: 11px;
+    padding: 2px 5px;
+
+    & > .mat-icon {
+      width: 14px;
+      height: 14px;
+      font-size: 14px;
+      margin: 0;
+      vertical-align: bottom;
+    }
+  }
+
+  & .region {
+    font-size: 9px;
+    line-height: 20px;
+    color: $text-light;
+    font-weight: bold;
+    margin: 0 2px;
+    white-space: nowrap;
+
+    &.red {
+      & span {
+        border-color: $warn;
+      }
+      color: $warn;
+    }
+
+    & > span {
+      border: solid 1px $text-dark;
+      padding: 1px 6px;
+      margin: 0 1px;
+
+      &:first-child {
+        border-radius: 0;
+        border-top-left-radius: 11px;
+        border-bottom-left-radius: 11px;
+      }
+      &:last-child {
+        border-radius: 0;
+        border-top-right-radius: 11px;
+        border-bottom-right-radius: 11px;
+      }
+    }
+  }
+}

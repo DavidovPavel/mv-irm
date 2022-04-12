@@ -1,0 +1,39 @@
+header {
+  position: relative;
+  height: 60px;
+  color: #535353;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(183, 192, 206, 20%);
+
+  & h1 {
+    margin: 0 0 0 20px;
+    line-height: 60px;
+    height: 60px;
+
+    &.small {
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  & > div {
+    margin-right: 25px;
+  }
+
+  & .user {
+    display: flex;
+    align-items: center;
+
+    mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      margin-right: 5px;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+}

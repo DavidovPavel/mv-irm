@@ -1,0 +1,15 @@
+<div>
+  <irm-text-control [form]="form" label="Просрочка" name="scores" class="full-width"></irm-text-control>
+</div>
+<irm-textarea-control
+  [form]="form"
+  label="Добавте комментарий"
+  class="full-width"
+  name="comment"
+></irm-textarea-control>
+
+<div [style.margin]="'20px 0 60px'">
+  <button mat-stroked-button color="primary" (click)="cancel()">Отмена</button>
+  &nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+</div>
